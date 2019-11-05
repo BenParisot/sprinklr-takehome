@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LandingContainer } from '../styles';
+import { LandingContainer, LandingForm } from '../styles';
 
 export default function Landing() {
 
@@ -7,10 +7,10 @@ export default function Landing() {
         <LandingContainer>
             <h1>Weather.</h1>
             <p>Enter your zip to get a 5-day forecast for your area.</p>
-            <form className="landing-form">
-                <input type="text" name="zip"></input>
+            <LandingForm>
+                <input type="text" name="zip" autoComplete="off"></input>
                 <button>Submit</button>
-            </form>
+            </LandingForm>
         </LandingContainer>
     )
 }
