@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { StyledHeader } from '../../styles';
 
 export default function Header() {
     return(
-        <header className="header">
+        <StyledHeader>
             <Link to="/">Search Again</Link>
-        </header>
+        </StyledHeader>
     )
 }

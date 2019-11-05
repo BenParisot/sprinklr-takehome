@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import Background from './assets/background.jpg';
+import HeaderBackground from './assets/header-background.jpg';
 
 createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Sarala:400,700&display=swap');
@@ -57,5 +58,21 @@ export const LandingForm = styled.form`
     }
     button:hover {
         cursor: pointer;
+    }
+`;
+
+export const StyledHeader = styled.header`
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: url(${HeaderBackground});
+    height: 7rem;
+    padding-right: 2rem;
+    a {
+        color: white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
     }
 `;
