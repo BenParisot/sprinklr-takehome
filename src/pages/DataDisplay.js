@@ -8,8 +8,13 @@ export default class DataDisplay extends PureComponent {
         return(
             <div className="data-display">
                 <Header />
-                <h1>5-Day Temp for</h1>
-                <h1 className="location-title">Portland, OR</h1>
+                <section className="display-title">
+                    <h1>5-Day Temp for</h1>
+                    <h1 className="location-title">Portland, OR</h1>
+                </section>
+                <section className="display-graph">
+                    <p>Line graph here</p>
+                </section>
             </div>
         )
     }
