@@ -1,12 +1,21 @@
 import React from 'react';
 import Landing from './pages/Landing';
+import DataDisplay from './pages/DataDisplay';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 
 function App() {
   return (
-    <>
-      <Landing />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/:locationKey" component={DataDisplay} />
+       </Switch>
+    </Router>
   );
 }
 
