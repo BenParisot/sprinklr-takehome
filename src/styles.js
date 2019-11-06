@@ -102,6 +102,7 @@ export const DisplayGraph = styled.div`
 `;
 
 export const DataDetail = styled.div`
-
+    display: flex;
+    margin: 4rem 0 0 5rem;
 
 `;

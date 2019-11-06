@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DisplayGraph } from '../styles';
+import { DisplayTitle, DisplayGraph, DataDetail } from '../styles';
+import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 
 export default class DataDisplay extends PureComponent {
 
@@ -16,19 +17,28 @@ export default class DataDisplay extends PureComponent {
                 <DisplayGraph>
                     <p>Line graph here</p>
                 </DisplayGraph>
-                <div className="data-detail">
+                <DataDetail>
                     <div className="data-description">
                         <h2>Description</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     </div>
                     <div className="data-modal">
                         <h2>Weather Specifics</h2>
-                        <section className="data-rain"></section>
-                        <section className="data-wind"></section>
-                        <section className="data-clouds"></section>
+                        <section className="data-rain">
+                            <WiRaindrops />
+                            <p>Rain weather specifics rain rain rain rain.</p>
+                        </section>
+                        <section className="data-wind">
+                            <WiStrongWind />
+                            <p>Wind weather specifics rwind wind wind wind</p>
+                        </section>
+                        <section className="data-clouds">
+                            <WiCloudy />
+                            <p>Clouds weather specifics couds ouds louds clouds.</p>
+                        </section>
                     </div>
 
-                </div>
+                </DataDetail>
             </div>
         )
     }
