@@ -17,9 +17,10 @@ export default class DataDisplay extends PureComponent {
     }
 
     
-    componentDidUpdate() {
+    componentDidMount() {
         let line = d3.selectAll('#line');
         const totalLength = line.node().getTotalLength();
+        console.log('total length', totalLength);
 
         line 
             .attr('stroke-dasharray', totalLength)
@@ -27,7 +28,7 @@ export default class DataDisplay extends PureComponent {
             .attr('stroke-width', 8)
             .attr('stroke', '#6788ad')
             .transition()
-            .duration(3000)
+            .duration(2000)
             .attr('stroke-width', 0)
             .attr('stroke-dashoffset', 0);
 
@@ -36,7 +37,7 @@ export default class DataDisplay extends PureComponent {
         area
             .attr('transform', 'translate(0, 300)')
             .transition()
-            .duration(3000)
+            .duration(2000)
             .attr('transform', 'translate(0,0)');
     }
 
@@ -49,11 +50,6 @@ export default class DataDisplay extends PureComponent {
         const maxX = d3.max(data.map(entry => entry.date));
         const minY = d3.min(data.map(entry => entry.temp));
         const maxY = d3.max(data.map(entry => entry.temp));
-
-        console.log('minx', minX);
-        console.log('maxx', maxX);
-        console.log('miny', minY);
-        console.log('maxy', maxY);
 
         let x = d3 
             .scaleLinear()
@@ -103,13 +99,13 @@ export default class DataDisplay extends PureComponent {
                         <path
                             id={'line'}
                             d={line(data)}
-                            fill={"#888"}
-                            stroke={"#888"}
+                            fill={"transparent"}
+                            stroke={"transparent"}
                         />
                         <path
                             id={'area'}
                             d={area(data)}
-                            fill={"transparent"}
+                            fill={"#888"}
                             style={{ opacity: 0.75 }}
                         />  
                     </svg>
