@@ -2,8 +2,16 @@ import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
 import { DisplayTitle, DisplayGraph, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
+import d3 from 'd3';
 
 export default class DataDisplay extends PureComponent {
+    state = [
+        { date: 8, temp: 41 },
+        { date: 9, temp: 44 },
+        { date: 10, temp: 48 },
+        { date: 11, temp: 53 },
+        { date: 12, temp: 57 },
+    ]
 
 
     render() {
