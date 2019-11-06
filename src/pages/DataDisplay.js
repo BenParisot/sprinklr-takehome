@@ -16,6 +16,19 @@ export default class DataDisplay extends PureComponent {
                 <DisplayGraph>
                     <p>Line graph here</p>
                 </DisplayGraph>
+                <div className="data-detail">
+                    <div className="data-description">
+                        <h2>Description</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                    <div className="data-modal">
+                        <h2>Weather Specifics</h2>
+                        <section className="data-rain"></section>
+                        <section className="data-wind"></section>
+                        <section className="data-clouds"></section>
+                    </div>
+
+                </div>
             </div>
         )
     }

@@ -78,7 +78,7 @@ export const StyledHeader = styled.header`
 `;
 
 export const DisplayTitle = styled.div`
-    margin: 4rem 0 0 4rem;
+    margin: 4rem 0 0 5rem;
     h1 {
         font-size: 3rem;
         color: #282828;
@@ -97,6 +97,11 @@ export const DisplayGraph = styled.div`
     background-color: lightgrey;
     border-left: solid 8px black;
     border-bottom: solid 8px black;
-    margin: 4rem 0 0 4rem;
+    margin: 4rem 0 0 5rem;
+
+`;
+
+export const DataDetail = styled.div`
+
 
 `;
