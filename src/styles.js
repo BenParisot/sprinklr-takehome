@@ -104,5 +104,32 @@ export const DisplayGraph = styled.div`
 export const DataDetail = styled.div`
     display: flex;
     margin: 4rem 0 0 5rem;
+    h2 {
+        text-transform: uppercase;
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
+    }
+`;
 
+export const DataDescription = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding-right: 2rem;
+    h2 {
+        margin-bottom: 1rem;
+    }
+`;
+
+export const DataModal = styled.div`
+    padding: 1.5rem;
+    background: lightgray;
+    h2 {
+        margin-bottom: 1rem;
+    }
+
+`;
+
+export const DataInfo = styled.div`
+    display: flex;
 `;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DisplayGraph, DataDetail } from '../styles';
+import { DisplayTitle, DisplayGraph, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 
 export default class DataDisplay extends PureComponent {
@@ -18,25 +18,25 @@ export default class DataDisplay extends PureComponent {
                     <p>Line graph here</p>
                 </DisplayGraph>
                 <DataDetail>
-                    <div className="data-description">
+                    <DataDescription>
                         <h2>Description</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <div className="data-modal">
+                    </DataDescription>
+                    <DataModal>
                         <h2>Weather Specifics</h2>
-                        <section className="data-rain">
-                            <WiRaindrops />
+                        <DataInfo>
+                            <WiRaindrops size="100" />
                             <p>Rain weather specifics rain rain rain rain.</p>
-                        </section>
-                        <section className="data-wind">
-                            <WiStrongWind />
+                        </DataInfo>
+                        <DataInfo>
+                            <WiStrongWind size="100" />
                             <p>Wind weather specifics rwind wind wind wind</p>
-                        </section>
-                        <section className="data-clouds">
-                            <WiCloudy />
+                        </DataInfo>
+                        <DataInfo>
+                            <WiCloudy size="100" />
                             <p>Clouds weather specifics couds ouds louds clouds.</p>
-                        </section>
-                    </div>
+                        </DataInfo>
+                    </DataModal>
 
                 </DataDetail>
             </div>
