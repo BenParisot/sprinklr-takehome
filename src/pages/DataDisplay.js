@@ -13,8 +13,27 @@ export default class DataDisplay extends PureComponent {
         { date: 12, temp: 57 },
     ]
 
+    
+
 
     render() {
+        const { data } = this.state;
+
+        const minX = d3.min(data.map(entry => entry.date));
+        const maxX = d3.max(data.map(entry => entry.date));
+        const minY = d3.min(data.map(entry => data.temp));
+        const maxY = d3.max(data.map(entry => entry.temp));
+
+        let x = d3 
+            .scaleLinear()
+            .domain([minX, maxX])
+            .range([0, width]);
+
+        let y = d3 
+            .scaleLinear()
+            .domain([minY, maxY])
+            .range([height, height / 3])
+
         return(
             <div className="data-display">
                 <Header />
