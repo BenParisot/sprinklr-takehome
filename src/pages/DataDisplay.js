@@ -1,38 +1,95 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DisplayGraph, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
+import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
-import d3 from 'd3';
+import * as d3 from 'd3';
 
 export default class DataDisplay extends PureComponent {
-    state = [
-        { date: 8, temp: 41 },
-        { date: 9, temp: 44 },
-        { date: 10, temp: 48 },
-        { date: 11, temp: 53 },
-        { date: 12, temp: 57 },
-    ]
+    state = {
+        data: [
+            { date: 8, temp: 41 },
+            { date: 9, temp: 44 },
+            { date: 10, temp: 48 },
+            { date: 11, temp: 53 },
+            { date: 12, temp: 57 },
+
+        ]
+    }
 
     
+    componentDidUpdate() {
+        let line = d3.selectAll('#line');
+        const totalLength = line.node().getTotalLength();
 
+        line 
+            .attr('stroke-dasharray', totalLength)
+            .attr('stroke-dashoffset', totalLength)
+            .attr('stroke-width', 8)
+            .attr('stroke', '#6788ad')
+            .transition()
+            .duration(3000)
+            .attr('stroke-width', 0)
+            .attr('stroke-dashoffset', 0);
+
+        let area = d3.selectAll('#area');
+
+        area
+            .attr('transform', 'translate(0, 300)')
+            .transition()
+            .duration(3000)
+            .attr('transform', 'translate(0,0)');
+    }
 
     render() {
+    console.log('state', this.state.data);
+
         const { data } = this.state;
 
         const minX = d3.min(data.map(entry => entry.date));
         const maxX = d3.max(data.map(entry => entry.date));
-        const minY = d3.min(data.map(entry => data.temp));
+        const minY = d3.min(data.map(entry => entry.temp));
         const maxY = d3.max(data.map(entry => entry.temp));
+
+        console.log('minx', minX);
+        console.log('maxx', maxX);
+        console.log('miny', minY);
+        console.log('maxy', maxY);
 
         let x = d3 
             .scaleLinear()
             .domain([minX, maxX])
-            .range([0, width]);
+            .range([0, 400]);
 
         let y = d3 
             .scaleLinear()
             .domain([minY, maxY])
-            .range([height, height / 3])
+            .range([300, 300 / 3]);
+
+
+        const line = d3
+            .line()
+            .x(function(entry) {
+                console.log('entry', entry);
+                return x(entry.date);
+            })
+            .y(function(entry) {
+                return y(entry.temp);
+            });
+
+            console.log('line', line);
+
+        const area = d3
+            .area()
+            .x(function(entry) {
+                return x(entry.date);
+            })
+            .y0(function(entry) {
+                return maxY;
+            })
+            .y1(function(entry) {
+                return y(entry.temp);
+            });
+
 
         return(
             <div className="data-display">
@@ -41,9 +98,22 @@ export default class DataDisplay extends PureComponent {
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">Portland, OR</h1>
                 </DisplayTitle>
-                <DisplayGraph>
-                    <p>Line graph here</p>
-                </DisplayGraph>
+                <div>
+                    <svg>
+                        <path
+                            id={'line'}
+                            d={line(data)}
+                            fill={"#888"}
+                            stroke={"#888"}
+                        />
+                        <path
+                            id={'area'}
+                            d={area(data)}
+                            fill={"transparent"}
+                            style={{ opacity: 0.75 }}
+                        />  
+                    </svg>
+                </div>
                 <DataDetail>
                     <DataDescription>
                         <h2>Description</h2>
