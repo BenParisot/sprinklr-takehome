@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
+import { DisplayTitle, DisplayGraph } from '../styles';
 
 export default class DataDisplay extends PureComponent {
 
@@ -8,13 +9,13 @@ export default class DataDisplay extends PureComponent {
         return(
             <div className="data-display">
                 <Header />
-                <section className="display-title">
+                <DisplayTitle>
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">Portland, OR</h1>
-                </section>
-                <section className="display-graph">
+                </DisplayTitle>
+                <DisplayGraph>
                     <p>Line graph here</p>
-                </section>
+                </DisplayGraph>
             </div>
         )
     }

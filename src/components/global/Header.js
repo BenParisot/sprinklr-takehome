@@ -5,7 +5,7 @@ import { StyledHeader } from '../../styles';
 export default function Header() {
     return(
         <StyledHeader>
-            <Link to="/">Search Again</Link>
+            <Link to="/">Back</Link>
         </StyledHeader>
     )
 }

@@ -76,3 +76,27 @@ export const StyledHeader = styled.header`
         font-weight: bold;
     }
 `;
+
+export const DisplayTitle = styled.div`
+    margin: 4rem 0 0 4rem;
+    h1 {
+        font-size: 3rem;
+        color: #282828;
+        text-transform: uppercase;
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
+    }
+    .location-title {
+        color: #018bb1;
+    }
+`;
+
+export const DisplayGraph = styled.div`
+    height: 400px;
+    width: 800px;
+    background-color: lightgrey;
+    border-left: solid 8px black;
+    border-bottom: solid 8px black;
+    margin: 4rem 0 0 4rem;
+
+`;
