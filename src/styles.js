@@ -131,5 +131,8 @@ export const DataModal = styled.div`
 `;
 
 export const DataInfo = styled.div`
+    width: 40%;
     display: flex;
+    flex-grow: 1 2;
+    align-items: center;
 `;
