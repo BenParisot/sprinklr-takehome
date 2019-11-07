@@ -1,10 +1,8 @@
-import React from 'react';
 import * as d3 from 'd3';
 
-export default function LineGraph({ data }) {
+export default function makeLineGraph(data) {
 
     const svg = d3.select('svg');
-    const color = '#CB8589';
     const height = 440;
     const width = 1100;
 
@@ -74,10 +72,4 @@ export default function LineGraph({ data }) {
     g.append('text')
         .attr('class', 'title')
         .attr('y', -10);
-        // .text(title);
-
-
-    return (
-        <svg id="svg" width={width} height={height} fill="none" stroke={color}></svg>
-    )
 }
