@@ -37,13 +37,7 @@ export default class DataDisplay extends PureComponent {
     
 
     render() {
-        console.log('match', this.props.match.zip);
-        console.log('zip', this.state.zip);
-        const { data, results, cityName, dataResults, stateName } = this.state;
-        console.log('results', results);
-        console.log('name', cityName);
-        console.log('data results', dataResults);
-        console.log('state name', stateName);
+        const { data, cityName, stateName } = this.state;
         return(
             <>
                 <Header />
