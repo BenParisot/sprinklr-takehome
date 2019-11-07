@@ -19,7 +19,6 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T03:00:00-08:00"), temp: 44 },
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
-
         ]
     }
 

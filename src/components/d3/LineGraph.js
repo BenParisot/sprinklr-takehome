@@ -19,13 +19,11 @@ export default function LineGraph({ data }) {
 
     const xScale = d3.scaleTime()
         .domain(d3.extent(data, xValue))
-        .range([0, innerWidth])
-        .nice();
+        .range([0, innerWidth]);
 
     const yScale = d3.scaleLinear()
         .domain(d3.extent(data, yValue))
-        .range([innerHeight, 0])
-        .nice();
+        .range([innerHeight, 0]);
 
     const g = svg.append('g')
         .attr('transform', `translate(${margin.left},${margin.top})`);
@@ -39,7 +37,7 @@ export default function LineGraph({ data }) {
         .tickPadding(10);
 
     const yAxisG = g.append('g').call(yAxis);
-    yAxisG.selectAll('.domain').remove();
+    // yAxisG.selectAll('.domain').remove();
 
     yAxisG.append('text')
         .attr('class', 'axis-label')
@@ -69,12 +67,14 @@ export default function LineGraph({ data }) {
 
     console.log('line', lineGenerator(data));
 
+    svg.append('path').attr('d', lineGenerator(data));
+
 
 
     return (
-        <svg width={width} stroke={color} fill={color} height={height}>
+        <svg width={width} height={height} >
             <g>
-                <path d={lineGenerator(data)}></path>
+                <path fill="none" stroke={color} d={lineGenerator(data)}></path>
             </g>
         </svg>
     )
