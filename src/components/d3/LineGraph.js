@@ -14,15 +14,15 @@ export default function LineGraph({ data }) {
     const yAxisLabel = 'Temperature(F)';
 
     const margin = { top: 60, right: 40, bottom: 88, left: 105 };
-    const innerWidth = width - (margin.left + margin.right);
-    const innerHeight = height - (margin.top + margin.bottom);
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
 
     const xScale = d3.scaleTime()
         .domain(d3.extent(data, xValue))
         .range([0, innerWidth]);
 
     const yScale = d3.scaleLinear()
-        .domain([40, 90])
+        .domain(d3.extent(data, yValue))
         .range([innerHeight, 0]);
 
     const g = svg.append('g')
@@ -65,11 +65,17 @@ export default function LineGraph({ data }) {
         .y(d => yScale(yValue(d)))
         .curve(d3.curveBasis);
 
+        g.append('path')
+        .attr('class', 'line-path')
+        .attr('d', lineGenerator(data));
+    
+    g.append('text')
+        .attr('class', 'title')
+        .attr('y', -10);
+        // .text(title);
+
+
     return (
-        <svg width={width} height={height} >
-            <g>
-                <path fill="none" strokeWidth="4" stroke={color} d={lineGenerator(data)} />
-            </g>
-        </svg>
+        <svg width={width} height={height} fill="none" stroke="black"></svg>
     )
 }
