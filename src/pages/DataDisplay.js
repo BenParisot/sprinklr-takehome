@@ -3,7 +3,7 @@ import Header from '../components/global/Header';
 import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 import LineGraph from '../components/d3/LineGraph';
-
+import { fetchLocationId } from '../utils/FetchWeather';
 export default class DataDisplay extends PureComponent {
     state = {
         data: [
@@ -19,13 +19,25 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T03:00:00-08:00"), temp: 44 },
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
-        ]
+        ],
+        location: 'Portland',
+        results: {}
+    }
+
+    getLocationid = () => {
+        return fetchLocationId(this.state.location)
+            .then(results => this.setState({ results: results}));
+    }
+
+    componentDidMount() {
+        this.getLocationid();
     }
 
     
 
     render() {
-        const { data } = this.state;
+        const { data, results } = this.state;
+        console.log('results', results);
         return(
             <>
                 <Header />
