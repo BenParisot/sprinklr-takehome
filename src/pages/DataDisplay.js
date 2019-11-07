@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DataDisplay, DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
+import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
-import * as d3 from 'd3';
+import LineGraph from '../components/d3/LineGraph';
 
 export default class DataDisplay extends PureComponent {
     state = {
@@ -15,18 +15,19 @@ export default class DataDisplay extends PureComponent {
         ]
     }
 
+    
+
     render() {
 
         return(
-            <DataDisplay>
+            <>
                 <Header />
                 <DisplayTitle>
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">Portland, OR</h1>
                 </DisplayTitle>
                 <div>
-                    <svg id="graph" width="1100" height="440">
-                    </svg>
+                    <LineGraph />
                 </div>
                 <DataDetail>
                     <DataDescription>
@@ -50,7 +51,7 @@ export default class DataDisplay extends PureComponent {
                     </DataModal>
 
                 </DataDetail>
-            </DataDisplay>
+            </>
         )
     }
 }
