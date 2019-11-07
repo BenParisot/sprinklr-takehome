@@ -3,7 +3,7 @@ import Header from '../components/global/Header';
 import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 import LineGraph from '../components/d3/LineGraph';
-import { fetchLocationId } from '../utils/FetchWeather';
+import { fetchAsyncWeather } from '../utils/FetchWeather';
 export default class DataDisplay extends PureComponent {
     state = {
         data: [
@@ -20,34 +20,47 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
         ],
+        dataResults: [],
         location: 'Portland',
         cityName: '',
+        stateName: '',
         cityId: '',
-        results: null
     }
 
-    getLocationid = () => {
-        return fetchLocationId(this.state.location)
-            .then(results => this.setState({ results: results[0], cityName: results[0].ParentCity.EnglishName, cityId: results[0].ParentCity.Key }));
+    // getLocationid = () => {
+    //     return fetchLocationId(90265)
+    //         .then(results => this.setState({ results: results[0], cityName: results[0].ParentCity.EnglishName, cityId: results[0].ParentCity.Key, stateName: results[0].AdministrativeArea.EnglishName }));
+    // }
+
+    getWeather = (zip) => {
+        return fetchAsyncWeather(zip)
+        .then(results => this.setState({ dataResults: results }));
     }
 
     componentDidMount() {
-        this.getLocationid();
+        this.getWeather(97212);
     }
 
+    // componentDidUpdate() {
+    //     console.log('city id', this.state.cityId);
+    //     this.getWeather(this.state.cityId);
+    // }
     
 
     render() {
-        const { data, results, cityName, cityId } = this.state;
+        const { data, results, cityName, cityId, dataResults, stateName } = this.state;
         console.log('results', results);
         console.log('name', cityName);
         console.log('id', cityId);
+        console.log('data results', dataResults);
+        console.log('state name', stateName);
+        console.log('results', dataResults)
         return(
             <>
                 <Header />
                 <DisplayTitle>
                     <h1>5-Day Temp for</h1>
-                    <h1 className="location-title">Portland, OR</h1>
+                    <h1 className="location-title">{cityName}, {stateName}</h1>
                 </DisplayTitle>
                 <div>
                     <LineGraph data={data} />
