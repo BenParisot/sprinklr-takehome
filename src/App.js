@@ -13,7 +13,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Landing} />
-        <Route path="/:locationKey" component={DataDisplay} />
+        <Route path="/:zip" component={DataDisplay} />
        </Switch>
     </Router>
   );

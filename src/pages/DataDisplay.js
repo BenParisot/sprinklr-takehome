@@ -7,6 +7,7 @@ import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
 export default class DataDisplay extends PureComponent {
     state = {
+        zip: this.props.match.params.zip,
         data: [
             { date: new Date("2019-11-06T19:00:00-08:00"), temp: 53 },
             { date: new Date("2019-11-06T20:00:00-08:00"), temp: 51 },
@@ -21,16 +22,9 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
         ],
-        dataResults: [],
-        location: 'Portland',
         cityName: '',
         stateName: '',
     }
-
-    // getLocationid = () => {
-    //     return fetchLocationId(90265)
-    //         .then(results => this.setState({ results: results[0], cityName: results[0].ParentCity.EnglishName, cityId: results[0].ParentCity.Key, stateName: results[0].AdministrativeArea.EnglishName }));
-    // }
 
     getWeather = (zip) => {
         return fetchWeather(zip)
@@ -38,22 +32,18 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidMount() {
-        this.getWeather(97212);
+        this.getWeather(this.state.zip);
     }
-
-    // componentDidUpdate() {
-    //     console.log('city id', this.state.cityId);
-    //     this.getWeather(this.state.cityId);
-    // }
     
 
     render() {
+        console.log('match', this.props.match.zip);
+        console.log('zip', this.state.zip);
         const { data, results, cityName, dataResults, stateName } = this.state;
         console.log('results', results);
         console.log('name', cityName);
         console.log('data results', dataResults);
         console.log('state name', stateName);
-        console.log('results', dataResults)
         return(
             <>
                 <Header />
