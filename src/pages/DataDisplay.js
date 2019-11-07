@@ -21,12 +21,14 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
         ],
         location: 'Portland',
-        results: {}
+        cityName: '',
+        cityId: '',
+        results: null
     }
 
     getLocationid = () => {
         return fetchLocationId(this.state.location)
-            .then(results => this.setState({ results: results}));
+            .then(results => this.setState({ results: results[0], cityName: results[0].ParentCity.EnglishName, cityId: results[0].ParentCity.Key }));
     }
 
     componentDidMount() {
@@ -36,8 +38,10 @@ export default class DataDisplay extends PureComponent {
     
 
     render() {
-        const { data, results } = this.state;
+        const { data, results, cityName, cityId } = this.state;
         console.log('results', results);
+        console.log('name', cityName);
+        console.log('id', cityId);
         return(
             <>
                 <Header />
