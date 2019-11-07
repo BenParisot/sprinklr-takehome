@@ -3,7 +3,8 @@ import Header from '../components/global/Header';
 import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 import LineGraph from '../components/d3/LineGraph';
-import { fetchAsyncWeather } from '../utils/FetchWeather';
+import { fetchWeather } from '../utils/FetchWeather';
+import { sortWeatherData } from '../utils/SortWeatherData';
 export default class DataDisplay extends PureComponent {
     state = {
         data: [
@@ -24,7 +25,6 @@ export default class DataDisplay extends PureComponent {
         location: 'Portland',
         cityName: '',
         stateName: '',
-        cityId: '',
     }
 
     // getLocationid = () => {
@@ -33,8 +33,8 @@ export default class DataDisplay extends PureComponent {
     // }
 
     getWeather = (zip) => {
-        return fetchAsyncWeather(zip)
-        .then(results => this.setState({ dataResults: results }));
+        return fetchWeather(zip)
+        .then(results => this.setState({ data: sortWeatherData(results.weatherData), cityName: results.cityData[0].EnglishName, stateName: results.cityData[0].AdministrativeArea.ID }));
     }
 
     componentDidMount() {
@@ -48,10 +48,9 @@ export default class DataDisplay extends PureComponent {
     
 
     render() {
-        const { data, results, cityName, cityId, dataResults, stateName } = this.state;
+        const { data, results, cityName, dataResults, stateName } = this.state;
         console.log('results', results);
         console.log('name', cityName);
-        console.log('id', cityId);
         console.log('data results', dataResults);
         console.log('state name', stateName);
         console.log('results', dataResults)
