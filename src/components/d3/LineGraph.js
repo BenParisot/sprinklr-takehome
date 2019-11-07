@@ -2,13 +2,14 @@ import React from 'react';
 import * as d3 from 'd3';
 
 export default function LineGraph({ data }) {
+
     const svg = d3.select('svg');
     const color = '#CB8589';
     const height = 440;
     const width = 1100;
 
     const xValue = d => d.date;
-    const xAxisLabel = 'Days';
+    const xAxisLabel = 'Hours';
 
     const yValue = d => d.temp;
     const yAxisLabel = 'Temperature(F)';
@@ -22,7 +23,7 @@ export default function LineGraph({ data }) {
         .range([0, innerWidth]);
 
     const yScale = d3.scaleLinear()
-        .domain(d3.extent(data, yValue))
+        .domain([0, 110])
         .range([innerHeight, 0]);
 
     const g = svg.append('g')
@@ -67,6 +68,7 @@ export default function LineGraph({ data }) {
 
         g.append('path')
         .attr('class', 'line-path')
+        .attr('stroke-width', 4)
         .attr('d', lineGenerator(data));
     
     g.append('text')
@@ -76,6 +78,6 @@ export default function LineGraph({ data }) {
 
 
     return (
-        <svg width={width} height={height} fill="none" stroke="black"></svg>
+        <svg id="svg" width={width} height={height} fill="none" stroke={color}></svg>
     )
 }

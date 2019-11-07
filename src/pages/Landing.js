@@ -20,7 +20,7 @@ export default class Landing extends PureComponent {
                 <p>Enter your zip to get a 5-day forecast for your area.</p>
                 <LandingForm>
                     <input type="text" name="zip" autoComplete="off" onChange={this.handleChange}></input>
-                   <button><Link to={linkUrl}>Submit</Link></button> 
+                    <Link to={linkUrl}><button>Submit</button></Link>
                 </LandingForm>
             </LandingContainer>
         )

@@ -35,6 +35,8 @@ export const LandingContainer = styled.div`
 export const LandingForm = styled.form`
     display: flex; 
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     input {
         margin: 2rem;
         border: none;
@@ -44,11 +46,12 @@ export const LandingForm = styled.form`
         font-size: 1.3rem;
         color: grey;
     }
+
     button {
         border: none;
-        width: 50%;
-        align-self: center;
-        padding: 1rem 0;
+        /* width: 50%; */
+        /* align-self: center; */
+        padding: 1rem 2rem;
         color: white;
         background: coral;
         text-transform: uppercase;

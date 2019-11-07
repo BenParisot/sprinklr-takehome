@@ -2,9 +2,10 @@ import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
 import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
-import LineGraph from '../components/d3/LineGraph';
-import { fetchWeather } from '../utils/FetchWeather';
-import { sortWeatherData } from '../utils/SortWeatherData';
+import * as d3 from 'd3';
+// import LineGraph from '../components/d3/LineGraph';
+// import { fetchWeather } from '../utils/FetchWeather';
+// import { sortWeatherData } from '../utils/SortWeatherData';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
@@ -24,20 +25,109 @@ export default class DataDisplay extends PureComponent {
         ],
         cityName: '',
         stateName: '',
+        rainProp: '',
+        uvIndex: '',
+        windSpeed: '',
+
     }
 
-    getWeather = (zip) => {
-        return fetchWeather(zip)
-        .then(results => this.setState({ data: sortWeatherData(results.weatherData), cityName: results.cityData[0].EnglishName, stateName: results.cityData[0].AdministrativeArea.ID }));
-    }
+    
+
+    // getWeather = (zip) => {
+    //     return fetchWeather(zip)
+    //     .then(results => this.setState({ data: sortWeatherData(results.weatherData), cityName: results.cityData[0].EnglishName, stateName: results.cityData[0].AdministrativeArea.ID }));
+    // }
 
     componentDidMount() {
-        this.getWeather(this.state.zip);
+        // this.getWeather(this.state.zip);
+        const svg = d3.select('svg');
+
+        const color = '#CB8589';
+        const height = 440;
+        const width = 1100;
+        const svgCount = document.getElementById('svg');
+        console.log('svg count', svgCount);
+
+        const xValue = d => d.date;
+        const xAxisLabel = 'Hours';
+    
+        const yValue = d => d.temp;
+        const yAxisLabel = 'Temperature(F)';
+    
+        const margin = { top: 60, right: 40, bottom: 88, left: 105 };
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+    
+        const xScale = d3.scaleTime()
+            .domain(d3.extent(this.state.data, xValue))
+            .range([0, innerWidth]);
+    
+        const yScale = d3.scaleLinear()
+            .domain([0, 110])
+            .range([innerHeight, 0]);
+    
+        const g = svg.append('g')
+            .attr('transform', `translate(${margin.left},${margin.top})`);
+    
+        const xAxis = d3.axisBottom(xScale)
+            .tickSize(-innerHeight)
+            .tickPadding(15);
+    
+        const yAxis = d3.axisLeft(yScale)
+            .tickSize(-innerWidth)
+            .tickPadding(10);
+    
+        const yAxisG = g.append('g').call(yAxis);
+        yAxisG.selectAll('.domain').remove();
+    
+        yAxisG.append('text')
+            .attr('class', 'axis-label')
+            .attr('y', -60)
+            .attr('x', -innerHeight / 2)
+            .attr('fill', 'black')
+            .attr('transform', `rotate(-90)`)
+            .attr('text-anchor', 'middle')
+            .text(yAxisLabel);
+    
+        const xAxisG = g.append('g').call(xAxis)
+            .attr('transform', `translate(0,${innerHeight})`);
+    
+        xAxisG.select('.domain').remove();
+    
+        xAxisG.append('text')
+            .attr('class', 'axis-label')
+            .attr('y', 80)
+            .attr('x', innerWidth / 2)
+            .attr('fill', 'black')
+            .text(xAxisLabel);
+    
+        const lineGenerator = d3.line()
+            .x(d => xScale(xValue(d)))
+            .y(d => yScale(yValue(d)))
+            .curve(d3.curveBasis);
+    
+            g.append('path')
+            .attr('class', 'line-path')
+            .attr('stroke-width', 4)
+            .attr('d', lineGenerator(this.state.data));
+        
+        g.append('text')
+            .attr('class', 'title')
+            .attr('y', -10);
     }
     
 
     render() {
+
+
+        const color = '#CB8589';
+        const height = 440;
+        const width = 1100;
+    
+        // 
+
         const { data, cityName, stateName } = this.state;
+        console.log('data', data);
         return(
             <>
                 <Header />
@@ -45,8 +135,8 @@ export default class DataDisplay extends PureComponent {
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">{cityName}, {stateName}</h1>
                 </DisplayTitle>
-                <div>
-                    <LineGraph data={data} />
+                <div id="svg">
+                    <svg width={width} height={height} fill="none" stroke={color}></svg>
                 </div>
                 <DataDetail>
                     <DataDescription>
