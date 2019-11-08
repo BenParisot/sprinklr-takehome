@@ -85,7 +85,7 @@ export default function makeLineGraph(data) {
         .transition()
         .duration(2000)
         .attr('stroke', '#018BB1')
-        .attr('stroke-width', 4)
+        .attr('stroke-width', 4);
 
 
     

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo, GraphDiv } from '../styles';
+import { DisplayTitle, DataDetail, DataModal, DataInfo, GraphDiv, Dolores } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 import makeLineGraph from '../components/d3/LineGraph';
 // import { fetchWeather } from '../utils/FetchWeather';
@@ -22,7 +22,7 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
         ],
-        cityName: 'Portland',
+        cityName: '',
         stateName: '',
         rainProp: '',
         uvIndex: '',
@@ -65,10 +65,6 @@ export default class DataDisplay extends PureComponent {
                     </div>
                 </GraphDiv>
                 <DataDetail>
-                    <DataDescription>
-                        <h2>Description</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </DataDescription>
                     <DataModal>
                         <h2>Weather Specifics</h2>
                         <DataInfo>
@@ -87,7 +83,7 @@ export default class DataDisplay extends PureComponent {
                 </DataDetail>
                 </> : 
                 <>
-                    <h1>I'm sorry, but that doesn't look like anything to me.</h1>
+                    <Dolores>Doesn't look like anything to me.</Dolores>
                 </>}
             </>
         )

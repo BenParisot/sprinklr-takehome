@@ -145,3 +145,13 @@ export const GraphDiv = styled.div`
     justify-content: center;
     margin-right: 2.5rem;
 `;
+
+export const Dolores = styled.h1`
+    font-size: 3rem;
+    color: #018bb1;
+    text-transform: uppercase;
+    font-family: 'Sarala', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 6rem;
+`;
