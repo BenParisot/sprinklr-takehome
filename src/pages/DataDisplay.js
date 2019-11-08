@@ -22,7 +22,7 @@ export default class DataDisplay extends PureComponent {
             { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
             { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
         ],
-        cityName: '',
+        cityName: 'Portland',
         stateName: '',
         rainProp: '',
         uvIndex: '',
@@ -53,6 +53,8 @@ export default class DataDisplay extends PureComponent {
         return(
             <>
                 <Header />
+                {cityName ?
+                <>
                 <DisplayTitle>
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">{cityName}, {stateName}</h1>
@@ -82,8 +84,11 @@ export default class DataDisplay extends PureComponent {
                             <p>Clouds weather specifics couds ouds louds clouds.</p>
                         </DataInfo>
                     </DataModal>
-
                 </DataDetail>
+                </> : 
+                <>
+                    <h1>I'm sorry, but that doesn't look like anything to me.</h1>
+                </>}
             </>
         )
     }
