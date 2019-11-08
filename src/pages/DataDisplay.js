@@ -5,12 +5,12 @@ import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
 import * as d3 from 'd3';
-import { dummyData } from '../assets/dummy-data';
+// import { dummyData } from '../assets/dummy-data';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
-        data: dummyData,
-        cityName: 'Portland',
+        data: null,
+        cityName: null,
         stateName: '',
         rainProp: '',
         completedMount: false
@@ -28,10 +28,10 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidMount() {
-        // this.getWeather(this.state.zip);
-        this.setState({
-            completedMount: true
-        })
+        this.getWeather(this.state.zip);
+        // this.setState({
+        //     completedMount: true
+        // })
     }
 
     componentDidUpdate() {
