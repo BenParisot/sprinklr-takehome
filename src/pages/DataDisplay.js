@@ -30,7 +30,7 @@ export default class DataDisplay extends PureComponent {
 
     componentDidMount() {
         this.getWeather(this.state.zip);
-            }
+    }
 
     componentDidUpdate() {
         const data = this.state.data;
