@@ -24,9 +24,9 @@ export default class DataDisplay extends PureComponent {
         ],
         cityName: 'Portland',
         stateName: '',
-        rainProp: '',
-        uvIndex: '',
-        windSpeed: '',
+        rainProp: '60',
+        uvIndex: '4',
+        windSpeed: '2',
 
     }
 
@@ -48,7 +48,7 @@ export default class DataDisplay extends PureComponent {
         const height = 440;
         const width = 1100;
 
-        const { cityName, stateName } = this.state;
+        const { cityName, stateName, rainProp, windSpeed, uvIndex } = this.state;
 
         return(
             <>
@@ -69,16 +69,16 @@ export default class DataDisplay extends PureComponent {
                     <h2>Weather Specifics</h2>
                     <DataModals>
                         <DataInfo>
-                            <WiRaindrops size="100" />
-                            <p>Rain weather specifics rain rain rain rain.</p>
+                            <WiRaindrops size="200" color={color} />
+                            <p>There is a {rainProp}% change it's gonna rain today.</p>
                         </DataInfo>
                         <DataInfo>
-                            <WiStrongWind size="100" />
-                            <p>Wind weather specifics rwind wind wind wind</p>
+                            <WiStrongWind size="200" color={color} />
+                            <p>The wind is blowing at {windSpeed} MPH today.</p>
                         </DataInfo>
                         <DataInfo>
-                            <WiCloudy size="100" />
-                            <p>Clouds weather specifics couds ouds louds clouds.</p>
+                            <WiCloudy size="200" color={color} />
+                            <p>The UV index is at {uvIndex} today.</p>
                         </DataInfo>
                     </DataModals>
                 </DataDetail>

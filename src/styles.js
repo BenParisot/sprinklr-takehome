@@ -112,14 +112,15 @@ export const DataDetail = styled.div`
         text-transform: uppercase;
         font-family: 'Sarala', sans-serif;
         font-weight: bold;
+        color: #282828;
+        font-size: 2rem;
     }
 `;
 
 export const DataModals = styled.div`
     display: flex;
-    margin: 3rem 6rem;
+    margin: 1rem 6rem;
     padding: 1.5rem;
-    background: rgba(1, 139, 177, .2);
     h2 {
         margin-bottom: 1rem;
     }
@@ -128,8 +129,18 @@ export const DataModals = styled.div`
 export const DataInfo = styled.div`
     width: 40%;
     display: flex;
-    flex-grow: 1 2;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    margin: 0 1.5rem;
+    padding: 0 2rem 2rem 2rem;
+    background: rgba(1, 139, 177, .2);
+    text-align: center;
+    p {
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
+        color: #282828;
+    }
 `;
 
 export const GraphDiv = styled.div`
