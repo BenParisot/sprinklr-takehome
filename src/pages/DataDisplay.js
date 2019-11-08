@@ -2,16 +2,15 @@ import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
 import { DisplayTitle, DisplayHeader, DataInfo, GraphDiv, Hr, Dolores } from '../styles';
 import { WiRaindrops } from 'react-icons/wi';
-// import makeLineGraph from '../components/d3/LineGraph';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
-// import makeLineGraph from '../components/d3/LineGraph';
 import * as d3 from 'd3';
+// import { dummyData } from '../assets/dummy-data';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
-        data: [],
-        cityName: '',
+        data: null,
+        cityName: 'Portland',
         stateName: '',
         rainProp: '',
         completedMount: false
@@ -30,6 +29,9 @@ export default class DataDisplay extends PureComponent {
 
     componentDidMount() {
         this.getWeather(this.state.zip);
+        // this.setState({
+        //     completedMount: true
+        // })
     }
 
     componentDidUpdate() {
@@ -63,7 +65,16 @@ export default class DataDisplay extends PureComponent {
             .attr('class', 'line')
             .attr('fill', 'none')
             .attr('stroke', 'black')
-            .attr('d', graphLine);
+            .attr('stroke-width', 0)
+            .attr('d', graphLine)
+            .transition()
+            .duration('1500')
+            .attr('stroke-width', 10)
+            .attr('stroke', '#CB8589')
+            .transition()
+            .duration('2500')
+            .attr('stroke-width', 4)
+            .attr('stroke', '#018bb1');
 
         svg.append('g')
             .attr('transform', `translate(0, ${height})`)
@@ -78,16 +89,16 @@ export default class DataDisplay extends PureComponent {
 
     render() {
         const color = '#CB8589';
-        const { cityName, stateName, rainProp } = this.state;
+        const { cityName, stateName, rainProp, data } = this.state;
 
         return (
             <>
                 <Header />
-                {cityName ?
+                {data ?
                     <>
                         <DisplayHeader>
                             <DisplayTitle>
-                                <h2>12-Hours of Temp for</h2>
+                                <h2>12-HR Temps for</h2>
                                 <h1 className="location-title">{cityName}, {stateName}</h1>
                             </DisplayTitle>
                             <DataInfo>
@@ -101,7 +112,7 @@ export default class DataDisplay extends PureComponent {
                         </GraphDiv>
                         <Hr />
                     </> :
-    <Dolores>Your content is loading</Dolores> }
+                <Dolores>Your content is loading</Dolores> }
             </>
         )
     }
