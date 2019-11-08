@@ -12,7 +12,7 @@ export const LandingContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 16%;
+    padding-top: 14%;
     background: url(${Background}) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;

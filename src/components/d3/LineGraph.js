@@ -5,6 +5,7 @@ export default function makeLineGraph(data) {
     const svg = d3.select('svg');
     const height = 440;
     const width = 1100;
+    const color = '#CB8589';
 
     const xValue = d => d.date;
     const xAxisLabel = 'Hours';
@@ -43,18 +44,25 @@ export default function makeLineGraph(data) {
         .attr('y', -60)
         .attr('x', -innerHeight / 2)
         .attr('fill', 'black')
+        .attr('stroke', 'none')
+        .attr('font-size', '24')
         .attr('transform', `rotate(-90)`)
         .attr('text-anchor', 'middle')
         .text(yAxisLabel);
 
     const xAxisG = g.append('g').call(xAxis)
-        .attr('transform', `translate(0,${innerHeight})`);
+        .attr('transform', `translate(0,${innerHeight})`)
+        .attr('font-size', '16')
+        .attr('stroke', 'none');
+
+   
 
     xAxisG.select('.domain').remove();
 
     xAxisG.append('text')
         .attr('class', 'axis-label')
         .attr('y', 80)
+        .attr('font-size', '24')
         .attr('x', innerWidth / 2)
         .attr('fill', 'black')
         .text(xAxisLabel);
@@ -64,12 +72,24 @@ export default function makeLineGraph(data) {
         .y(d => yScale(yValue(d)))
         .curve(d3.curveBasis);
 
+    const areaGenerator = d3.area()
+        .x(d => xScale(d.date))
+        .y(d => yScale(d.temp));
+
         g.append('path')
         .attr('class', 'line-path')
-        .attr('stroke-width', 4)
+        .attr('stroke-width', 2)
         .attr('d', lineGenerator(data));
+
+        g.append('path')
+        .attr('class', 'area')
+        .attr('transform', 'translate(0, 120)')
+        .transition()
+        .attr('stroke-width', 4)
+        .attr('fill', color)
+        .attr('stroke', color)
+        .duration(3000)
+        .attr('transform', 'translate(0,0)')
+        .attr('d', areaGenerator(data));
     
-    g.append('text')
-        .attr('class', 'title')
-        .attr('y', -10);
 }
