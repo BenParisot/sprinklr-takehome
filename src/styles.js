@@ -139,3 +139,9 @@ export const DataInfo = styled.div`
     flex-grow: 1 2;
     align-items: center;
 `;
+
+export const GraphDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-right: 2.5rem;
+`;

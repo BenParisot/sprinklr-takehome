@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo } from '../styles';
+import { DisplayTitle, DataDetail, DataDescription, DataModal, DataInfo, GraphDiv } from '../styles';
 import { WiRaindrops, WiCloudy, WiStrongWind } from 'react-icons/wi';
 import makeLineGraph from '../components/d3/LineGraph';
 // import { fetchWeather } from '../utils/FetchWeather';
@@ -57,9 +57,11 @@ export default class DataDisplay extends PureComponent {
                     <h1>5-Day Temp for</h1>
                     <h1 className="location-title">{cityName}, {stateName}</h1>
                 </DisplayTitle>
-                <div id="svg">
-                    <svg width={width} height={height} fill="none" stroke={color}></svg>
-                </div>
+                <GraphDiv>
+                    <div id="svg">
+                        <svg width={width} height={height} fill="none" stroke={color}></svg>
+                    </div>
+                </GraphDiv>
                 <DataDetail>
                     <DataDescription>
                         <h2>Description</h2>
