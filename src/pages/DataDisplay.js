@@ -56,7 +56,7 @@ export default class DataDisplay extends PureComponent {
                 {cityName ?
                 <>
                 <DisplayTitle>
-                    <h1>5-Day Temp for</h1>
+                    <h1>12-Hour Temp for</h1>
                     <h1 className="location-title">{cityName}, {stateName}</h1>
                 </DisplayTitle>
                 <GraphDiv>
@@ -66,7 +66,7 @@ export default class DataDisplay extends PureComponent {
                 </GraphDiv>
                 <Hr />
                 <DataDetail>
-                    <h2>Weather Specifics</h2>
+                    <h2>Your Weather Deets:</h2>
                     <DataModals>
                         <DataInfo>
                             <WiRaindrops size="200" color={color} />

@@ -70,7 +70,7 @@ export const StyledHeader = styled.header`
     align-items: center;
     background: url(${HeaderBackground});
     height: 7rem;
-    padding-right: 2rem;
+    padding-right: 4rem;
     a {
         color: white;
         text-decoration: none;
