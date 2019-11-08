@@ -2,13 +2,11 @@ import * as d3 from 'd3';
 
 export default function makeLineGraph(data) {
     const svg = d3.select('svg');
-    console.log('svg', svg);
     const height = 440;
     const width = 1100;
     const color = '#CB8589';
 
     const xValue = d => d.date;
-    console.log('xValue', xValue);
     const xAxisLabel = 'Hours';
 
     const yValue = d => d.temp;
@@ -27,10 +25,9 @@ export default function makeLineGraph(data) {
         .range([innerHeight, 0]);
 
     const g = svg.append('g')
+        .attr('background-color', 'red')
         .attr('transform', `translate(${margin.left},${margin.top})`);
-
-        console.log('g', g);
-
+        
     const xAxis = d3.axisBottom(xScale)
         .tickSize(-innerHeight)
         .tickPadding(15);

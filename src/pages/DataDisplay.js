@@ -5,12 +5,13 @@ import { WiRaindrops } from 'react-icons/wi';
 // import makeLineGraph from '../components/d3/LineGraph';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
-import makeLineGraph from '../components/d3/LineGraph';
+// import makeLineGraph from '../components/d3/LineGraph';
+import * as d3 from 'd3';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
         data: [
-                { date: new Date("2019-11-06T19:00:00-08:00"), temp: 53 },
+            { date: new Date("2019-11-06T19:00:00-08:00"), temp: 53 },
             { date: new Date("2019-11-06T20:00:00-08:00"), temp: 51 },
             { date: new Date("2019-11-06T21:00:00-08:00"), temp: 50 },
             { date: new Date("2019-11-06T22:00:00-08:00"), temp: 49 },
@@ -44,12 +45,60 @@ export default class DataDisplay extends PureComponent {
         // this.getWeather(this.state.zip);
         
 
-        makeLineGraph(this.state.data);
+        console.log(document.getElementById('svg'));
+        // makeLineGraph(this.state.data);
+        this.setState({ completedMount: true });
     }
 
     componentDidUpdate() {
-        console.log('component updating');
-        console.log(document.getElementById('svg'));
+        const data = this.state.data;
+        const margin = { top: 50, right: 50, bottom: 50, left: 50 };
+        const height = 440;
+        const width = 1100;
+
+        const x = d3.scaleTime()
+            .range([0, width]);
+
+        const y = d3.scaleLinear()
+            .range([height, 0]);
+
+        const graphLine = d3.line()
+            .x(d => x(d.date))
+            .y(d => y(d.temp));
+
+        const svg = d3.select('#svg')
+            .append('svg')
+                .attr('width', width + margin.left + margin.right)
+                .attr('height', height + margin.top + margin.bottom)
+            .append('g')
+                .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+        // const parseTime = d3.timeParse('%d-%b-%y');
+
+        // data.forEach(d => {
+        //     d.date = parseTime(d.date);
+        //     d.temp = +d.temp;
+        // });
+
+        x.domain(d3.extent(data, d => d.date));
+        y.domain([0, d3.max(data, d => d.temp)]);
+
+        svg.append('path')
+            .data([data])
+            .attr('class', 'line')
+            .attr('fill', 'none')
+            .attr('stroke', 'black')
+            .attr('d', graphLine);
+
+        svg.append('g')
+            .attr('transform', `translate(0, ${height})`)
+            .call(d3.axisBottom(x));
+
+        svg.append('g')
+            .call(d3.axisLeft(y));
+
+
+
     }
 
 
@@ -79,7 +128,6 @@ export default class DataDisplay extends PureComponent {
                         </DisplayHeader>
                         <GraphDiv>
                             <div id="svg">
-                                <svg width={width} height={height} fill="none" stroke={color}></svg>
                             </div>
                         </GraphDiv>
                         <Hr />
