@@ -5,11 +5,11 @@ import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
 import * as d3 from 'd3';
-// import { dummyData } from '../assets/dummy-data';
+import { dummyData } from '../assets/dummy-data';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
-        data: null,
+        data: dummyData,
         cityName: 'Portland',
         stateName: '',
         rainProp: '',
@@ -28,10 +28,10 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidMount() {
-        this.getWeather(this.state.zip);
-        // this.setState({
-        //     completedMount: true
-        // })
+        // this.getWeather(this.state.zip);
+        this.setState({
+            completedMount: true
+        })
     }
 
     componentDidUpdate() {
@@ -52,10 +52,10 @@ export default class DataDisplay extends PureComponent {
 
         const svg = d3.select('#svg')
             .append('svg')
-                .attr('width', width + margin.left + margin.right)
-                .attr('height', height + margin.top + margin.bottom)
+            .attr('width', width + margin.left + margin.right)
+            .attr('height', height + margin.top + margin.bottom)
             .append('g')
-                .attr('transform', `translate(${margin.left}, ${margin.top})`);
+            .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
         x.domain(d3.extent(data, d => d.date));
         y.domain([0, d3.max(data, d => d.temp)]);
@@ -82,6 +82,93 @@ export default class DataDisplay extends PureComponent {
 
         svg.append('g')
             .call(d3.axisLeft(y));
+
+        const mouseG = svg.append('g')
+            .attr('class', 'mouse-over-effects');
+
+        mouseG.append('path')
+            .attr('class', 'mouse-line')
+            .style('stroke', 'black')
+            .style('stroke-width', '3px')
+            .style('opacity', '0');
+
+        const lines = (document.getElementsByClassName('line'));
+
+        const mousePerLine = mouseG.selectAll('.mouse-per-line')
+            .data([data])
+            .enter()
+            .append('g')
+            .attr('class', 'mouse-per-line');
+
+        mousePerLine.append('circle')
+            .attr('r', 7)
+            .style('stroke', 'red')
+            .style('fill', 'none')
+            .style('stroke-width', '1px')
+            .style('opacity', '0');
+
+        mousePerLine.append('text')
+            .attr('transform', 'translate(10, 3)');
+
+        mouseG.append('svg:rect')
+            .attr('width', width)
+            .attr('height', height)
+            .attr('fill', 'none')
+            .attr('pointer-events', 'all')
+            .on('mouseout', function () {
+                d3.select('.mouse-line')
+                    .style('opacity', '0');
+                d3.selectAll('.mouse-per-line circle')
+                    .style('opacity', '0');
+                d3.selectAll('.mouse-per-line text')
+                    .style('opacity', '0');
+            })
+            .on('mouseover', function () {
+                d3.select('.mouse-line')
+                    .style('opacity', '1');
+                d3.selectAll('.mouse-per-line circle')
+                    .style('opacity', '1');
+                d3.selectAll('.mouse-per-line text')
+                    .style('opacity', '1');
+            })
+            .on('mousemove', function () {
+                const mouse = d3.mouse(this);
+                d3.select('.mouse-line')
+                    .attr('d', function () {
+                        let d = `M ${mouse[0]}, height`;
+                        d += ` ${mouse[0]}, 0`
+                        return d;
+                    });
+
+                d3.selectAll('.mouse-per-line')
+                    .attr('transform', function (d, i) {
+                        console.log(width / mouse[0])
+                        const xDate = x.invert(mouse[0]),
+                        bisect = d3.bisector(d => d.date).right,
+                        idx = bisect(d.values, xDate);
+
+                        let beginning = 0;
+                        let end = lines[i].getTotalLength();
+                        let target = null;
+                        let pos = null;
+
+                        while (true) {
+                            target = Math.floor((beginning + end) / 2);
+                            pos = lines[i].getPointAtLength(target);
+                            if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                                break;
+                            }
+                            if (pos.x > mouse[0]) end = target;
+                            else if (pos.x < mouse[0]) beginning = target;
+                            else break;
+                        }
+
+                        d3.select(this).select('text')
+                            .text(y.invert(pos.y).toFixed(2));
+                        return `translate ${mouse[0]}, ${pos.y}`;
+                    })
+            });
+
     }
 
 
@@ -112,7 +199,7 @@ export default class DataDisplay extends PureComponent {
                         </GraphDiv>
                         <Hr />
                     </> :
-                <Dolores>Your content is loading</Dolores> }
+                    <Dolores>Your content is loading</Dolores>}
             </>
         )
     }
