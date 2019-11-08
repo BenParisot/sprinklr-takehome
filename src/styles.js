@@ -49,8 +49,6 @@ export const LandingForm = styled.form`
 
     button {
         border: none;
-        /* width: 50%; */
-        /* align-self: center; */
         padding: 1rem 2rem;
         color: white;
         background: coral;
@@ -80,14 +78,24 @@ export const StyledHeader = styled.header`
     }
 `;
 
+export const DisplayHeader = styled.div`
+    display: flex;
+    flex-grow: 1 2;
+    justify-content: space-between;
+    align-items: center;
+`;
+
 export const DisplayTitle = styled.div`
     margin: 4rem 0 0 5rem;
+    color: #282828;
+    text-transform: uppercase;
+    font-family: 'Sarala', sans-serif;
+    font-weight: bold;
     h1 {
-        font-size: 3rem;
-        color: #282828;
-        text-transform: uppercase;
-        font-family: 'Sarala', sans-serif;
-        font-weight: bold;
+        font-size: 3rem;   
+    }
+    h2 {
+        font-size: 2.5rem;
     }
     .location-title {
         color: #018bb1;
@@ -103,37 +111,35 @@ export const DisplayGraph = styled.div`
     margin: 4rem 0 0 5rem;
 `;
 
-export const DataDetail = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 4rem 0 0 0;
-    h2 {
-        text-transform: uppercase;
-        font-family: 'Sarala', sans-serif;
-        font-weight: bold;
-        color: #282828;
-        font-size: 2rem;
-    }
-`;
+// export const DataDetail = styled.div`
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: 4rem 0 0 0;
+//     h2 {
+//         text-transform: uppercase;
+//         font-family: 'Sarala', sans-serif;
+//         font-weight: bold;
+//         color: #282828;
+//         font-size: 2rem;
+//     }
+// `;
 
-export const DataModals = styled.div`
-    display: flex;
-    margin: 1rem 6rem;
-    padding: 1.5rem;
-    h2 {
-        margin-bottom: 1rem;
-    }
-`;
+// export const DataModals = styled.div`
+//     display: flex;
+//     margin: 1rem 6rem;
+//     padding: 1.5rem;
+//     h2 {
+//         margin-bottom: 1rem;
+//     }
+// `;
 
 export const DataInfo = styled.div`
-    width: 40%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 1.5rem;
-    padding: 0 2rem 2rem 2rem;
+    margin: 2.5rem;
+    padding-right: 3rem;
     background: rgba(1, 139, 177, .2);
     text-align: center;
     p {
