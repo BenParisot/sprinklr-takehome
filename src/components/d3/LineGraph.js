@@ -72,24 +72,21 @@ export default function makeLineGraph(data) {
         .y(d => yScale(yValue(d)))
         .curve(d3.curveBasis);
 
-    const areaGenerator = d3.area()
-        .x(d => xScale(d.date))
-        .y(d => yScale(d.temp));
 
         g.append('path')
         .attr('class', 'line-path')
-        .attr('stroke-width', 2)
-        .attr('d', lineGenerator(data));
-
-        g.append('path')
-        .attr('class', 'area')
-        .attr('transform', 'translate(0, 120)')
+        .attr('stroke-width', 0)
+        .attr('stroke', '#FFB500')
+        .attr('d', lineGenerator(data))
         .transition()
-        .attr('stroke-width', 4)
-        .attr('fill', color)
+        .duration(1000)
         .attr('stroke', color)
-        .duration(3000)
-        .attr('transform', 'translate(0,0)')
-        .attr('d', areaGenerator(data));
+        .attr('stroke-width', 10)
+        .transition()
+        .duration(2000)
+        .attr('stroke', '#018BB1')
+        .attr('stroke-width', 4)
+
+
     
 }
