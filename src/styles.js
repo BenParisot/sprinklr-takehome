@@ -101,12 +101,13 @@ export const DisplayGraph = styled.div`
     border-left: solid 8px black;
     border-bottom: solid 8px black;
     margin: 4rem 0 0 5rem;
-
 `;
 
 export const DataDetail = styled.div`
     display: flex;
-    margin: 4rem 0 0 5rem;
+    flex-direction: column;
+    align-items: center;
+    margin: 4rem 0 0 0;
     h2 {
         text-transform: uppercase;
         font-family: 'Sarala', sans-serif;
@@ -114,23 +115,14 @@ export const DataDetail = styled.div`
     }
 `;
 
-export const DataDescription = styled.div`
+export const DataModals = styled.div`
     display: flex;
-    flex-direction: column;
-    width: 60%;
-    padding-right: 2rem;
-    h2 {
-        margin-bottom: 1rem;
-    }
-`;
-
-export const DataModal = styled.div`
+    margin: 3rem 6rem;
     padding: 1.5rem;
-    background: lightgray;
+    background: rgba(1, 139, 177, .2);
     h2 {
         margin-bottom: 1rem;
     }
-
 `;
 
 export const DataInfo = styled.div`
@@ -154,4 +146,9 @@ export const Dolores = styled.h1`
     font-weight: bold;
     text-align: center;
     margin-top: 6rem;
+`;
+
+export const Hr = styled.hr`
+    border: .2rem solid #CB8589;
+    margin: 4rem 6rem;
 `;
