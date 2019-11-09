@@ -128,7 +128,7 @@ export default function makeLineGraph(data) {
                     }
 
                     d3.select(this).select('text')
-                        .text(y.invert(pos.y).toFixed(2));
+                        .text(y.invert(pos.y).toFixed(0));
                     return "translate(" + mouse[0] + "," + pos.y +")";
                 });
         }); 
