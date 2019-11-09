@@ -104,6 +104,7 @@ export const CurrentTemp = styled.div`
 
 export const DisplayTitle = styled.div`
     margin: 4rem 0 0 5rem;
+    padding-right: 1rem;
     color: #282828;
     text-transform: uppercase;
     font-family: 'Sarala', sans-serif;
