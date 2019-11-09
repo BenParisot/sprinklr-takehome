@@ -115,7 +115,7 @@ export const DisplayTitle = styled.div`
         font-size: 2.5rem;
     }
     .location-title {
-        color: #018bb1;
+        color: ${props => props.tempColor};
     }
 `;
 
@@ -140,6 +140,7 @@ export const DataInfo = styled.div`
         font-family: 'Sarala', sans-serif;
         font-weight: bold;
         color: #282828;
+        font-size: 1.4rem;
     }
 `;
 

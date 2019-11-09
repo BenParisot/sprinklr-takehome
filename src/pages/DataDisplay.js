@@ -33,7 +33,8 @@ export default class DataDisplay extends PureComponent {
                 tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
                 tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
                 tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                currentTemp: sortWeatherData(results.weatherData)[0].temp
+                currentTemp: sortWeatherData(results.weatherData)[0].temp,
+                tempColor: setColorFromCurrentTemp(sortWeatherData(results.weatherData)[0].temp)
             }));
     }
 
@@ -47,12 +48,11 @@ export default class DataDisplay extends PureComponent {
 
     render() {
         const color = '#CB8589';
-        const { cityName, stateName, rainProp, data, tempAvg, tempHigh, tempLow, currentTemp } = this.state;
+        const { cityName, stateName, rainProp, data, tempAvg, tempHigh, tempLow, currentTemp, tempColor } = this.state;
         console.log('temp av', tempAvg);
         console.log('temp hi', tempHigh);
         console.log('temp lo', tempLow);
         console.log('current', currentTemp);
-        const tempColor = () => setColorFromCurrentTemp(currentTemp);
 
         return (
             <>
@@ -60,7 +60,7 @@ export default class DataDisplay extends PureComponent {
                 {data ?
                     <>
                         <DisplayHeader>
-                            <DisplayTitle>
+                            <DisplayTitle tempColor={tempColor}>
                                 <h1>12-HR Temps for <span className="location-title">{cityName}, {stateName}</span></h1>
                             </DisplayTitle>
                             <CurrentTemp tempColor={tempColor}>
