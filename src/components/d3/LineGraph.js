@@ -1,92 +1,135 @@
 import * as d3 from 'd3';
 
 export default function makeLineGraph(data) {
-    const svg = d3.select('svg');
+    const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     const height = 440;
     const width = 1100;
-    const color = '#CB8589';
 
-    const xValue = d => d.date;
-    const xAxisLabel = 'Hours';
+    const x = d3.scaleTime()
+        .range([0, width]);
 
-    const yValue = d => d.temp;
-    const yAxisLabel = 'Temperature(F)';
+    const y = d3.scaleLinear()
+        .range([height, 0]);
 
-    const margin = { top: 60, right: 40, bottom: 88, left: 105 };
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
+    const graphLine = d3.line()
+        .x(d => x(d.date))
+        .y(d => y(d.temp));
 
-    const xScale = d3.scaleTime()
-        .domain(d3.extent(data, xValue))
-        .range([0, innerWidth]);
+    const svg = d3.select('#svg')
+        .append('svg')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-    const yScale = d3.scaleLinear()
-        .domain([0, 110])
-        .range([innerHeight, 0]);
+    x.domain(d3.extent(data, d => d.date));
+    y.domain([0, d3.max(data, d => d.temp)]);
 
-    const g = svg.append('g')
-        .attr('background-color', 'red')
-        .attr('transform', `translate(${margin.left},${margin.top})`);
-        
-    const xAxis = d3.axisBottom(xScale)
-        .tickSize(-innerHeight)
-        .tickPadding(15);
-
-    const yAxis = d3.axisLeft(yScale)
-        .tickSize(-innerWidth)
-        .tickPadding(10);
-
-    const yAxisG = g.append('g').call(yAxis);
-    yAxisG.selectAll('.domain').remove();
-
-    yAxisG.append('text')
-        .attr('class', 'axis-label')
-        .attr('y', -60)
-        .attr('x', -innerHeight / 2)
-        .attr('fill', 'black')
-        .attr('stroke', 'none')
-        .attr('font-size', '24')
-        .attr('transform', `rotate(-90)`)
-        .attr('text-anchor', 'middle')
-        .text(yAxisLabel);
-
-    const xAxisG = g.append('g').call(xAxis)
-        .attr('transform', `translate(0,${innerHeight})`)
-        .attr('font-size', '16')
-        .attr('stroke', 'none');
-
-   
-
-    xAxisG.select('.domain').remove();
-
-    xAxisG.append('text')
-        .attr('class', 'axis-label')
-        .attr('y', 80)
-        .attr('font-size', '24')
-        .attr('x', innerWidth / 2)
-        .attr('fill', 'black')
-        .text(xAxisLabel);
-
-    const lineGenerator = d3.line()
-        .x(d => xScale(xValue(d)))
-        .y(d => yScale(yValue(d)))
-        .curve(d3.curveBasis);
-
-
-        g.append('path')
-        .attr('class', 'line-path')
+    svg.append('path')
+        .data([data])
+        .attr('class', 'line')
+        .attr('fill', 'none')
+        .attr('stroke', 'black')
         .attr('stroke-width', 0)
-        .attr('stroke', '#FFB500')
-        .attr('d', lineGenerator(data))
+        .attr('d', graphLine)
         .transition()
-        .duration(1000)
-        .attr('stroke', color)
+        .duration('1500')
         .attr('stroke-width', 10)
+        .attr('stroke', '#CB8589')
         .transition()
-        .duration(2000)
-        .attr('stroke', '#018BB1')
-        .attr('stroke-width', 4);
+        .duration('2500')
+        .attr('stroke-width', 4)
+        .attr('stroke', '#018bb1');
 
+    svg.append('g')
+        .attr('transform', `translate(0, ${height})`)
+        .call(d3.axisBottom(x));
 
-    
+    svg.append('g')
+        .call(d3.axisLeft(y));
+
+    const mouseG = svg.append('g')
+        .attr('class', 'mouse-over-effects');
+
+    mouseG.append('path')
+        .attr('class', 'mouse-line')
+        .style('stroke', '#CB8589')
+        .style('stroke-width', '2px')
+        .style('opacity', '0');
+
+    const lines = (document.getElementsByClassName('line'));
+
+    const mousePerLine = mouseG.selectAll('.mouse-per-line')
+        .data([data])
+        .enter()
+        .append('g')
+        .attr('class', 'mouse-per-line');
+
+    mousePerLine.append('circle')
+        .attr('r', 14)
+        .style('stroke', '#CB8589')
+        .style('fill', 'none')
+        .style('stroke-width', '2px')
+        .style('opacity', '0');
+
+    mousePerLine.append('text')
+        .attr('transform', 'translate(25, -15)')
+        .style('font-family', 'sans-serif')
+        .style('font-size', '1.6rem')
+        .style('text-transform', 'uppercase');
+
+    mouseG.append('svg:rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('fill', 'none')
+        .attr('pointer-events', 'all')
+        .on('mouseout', function () {
+            d3.select('.mouse-line')
+                .style('opacity', '0');
+            d3.selectAll('.mouse-per-line circle')
+                .style('opacity', '0');
+            d3.selectAll('.mouse-per-line text')
+                .style('opacity', '0');
+        })
+        .on('mouseover', function () {
+            d3.select('.mouse-line')
+                .style('opacity', '1');
+            d3.selectAll('.mouse-per-line circle')
+                .style('opacity', '1');
+            d3.selectAll('.mouse-per-line text')
+                .style('opacity', '1');
+        })
+        .on('mousemove', function () {
+            const mouse = d3.mouse(this);
+            d3.select('.mouse-line')
+                .attr('d', function () {
+                    let d = `M${mouse[0]}, ${height}`;
+                    d += ` ${mouse[0]}, 0`
+                    return d;
+                });
+
+            d3.selectAll('.mouse-per-line')
+                .attr('transform', function (d, i) {
+
+                    let beginning = 0;
+                    let end = lines[i].getTotalLength();
+                    let target = null;
+                    let pos = null;
+
+                    while (true) {
+                        target = Math.floor((beginning + end) / 2);
+                        pos = lines[i].getPointAtLength(target);
+                        if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                            break;
+                        }
+                        if (pos.x > mouse[0]) end = target;
+                        else if (pos.x < mouse[0]) beginning = target;
+                        else break;
+                    }
+
+                    d3.select(this).select('text')
+                        .text(y.invert(pos.y).toFixed(2));
+                    return "translate(" + mouse[0] + "," + pos.y +")";
+                });
+        }); 
 }
