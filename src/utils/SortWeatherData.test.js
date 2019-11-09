@@ -1,4 +1,4 @@
-import { sortWeatherData } from './SortWeatherData';
+import { sortWeatherData } from './sortWeatherData';
 
 
 describe('Testing sorting of weather data', () => {

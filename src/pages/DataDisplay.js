@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
 import { DisplayTitle, DisplayHeader, DataInfo, GraphDiv, Hr, Dolores } from '../styles';
 import { WiRaindrops } from 'react-icons/wi';
-import { fetchWeather } from '../utils/FetchWeather';
-import { sortWeatherData } from '../utils/SortWeatherData';
-import makeLineGraph from '../components/d3/LineGraph';
+import { fetchWeather } from '../utils/fetchWeather';
+import { sortWeatherData } from '../utils/sortWeatherData';
+import makeLineGraph from '../utils/makeLineGraph';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
