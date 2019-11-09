@@ -4,13 +4,12 @@ import { DisplayTitle, DisplayHeader, DataInfo, GraphDiv, Hr, Dolores } from '..
 import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
-import { dummyData } from '../assets/dummy-data';
 import * as d3 from 'd3';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
-        data: dummyData,
-        cityName: 'Portland',
+        data: null,
+        cityName: '',
         stateName: '',
         rainProp: '',
         completedMount: false
@@ -28,10 +27,7 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidMount() {
-        // this.getWeather(this.state.zip);
-        this.setState({
-            completedMount: true
-        })
+        this.getWeather(this.state.zip);
     }
 
     componentDidUpdate() {
@@ -88,8 +84,8 @@ export default class DataDisplay extends PureComponent {
 
         mouseG.append('path')
             .attr('class', 'mouse-line')
-            .style('stroke', 'black')
-            .style('stroke-width', '3px')
+            .style('stroke', '#CB8589')
+            .style('stroke-width', '2px')
             .style('opacity', '0');
 
         const lines = (document.getElementsByClassName('line'));
@@ -101,14 +97,17 @@ export default class DataDisplay extends PureComponent {
             .attr('class', 'mouse-per-line');
 
         mousePerLine.append('circle')
-            .attr('r', 7)
-            .style('stroke', 'red')
+            .attr('r', 14)
+            .style('stroke', '#CB8589')
             .style('fill', 'none')
-            .style('stroke-width', '1px')
+            .style('stroke-width', '2px')
             .style('opacity', '0');
 
         mousePerLine.append('text')
-            .attr('transform', 'translate(10, 3)');
+            .attr('transform', 'translate(25, -15)')
+            .style('font-family', 'sans-serif')
+            .style('font-size', '1.6rem')
+            .style('text-transform', 'uppercase');
 
         mouseG.append('svg:rect')
             .attr('width', width)
@@ -142,10 +141,6 @@ export default class DataDisplay extends PureComponent {
 
                 d3.selectAll('.mouse-per-line')
                     .attr('transform', function (d, i) {
-                        console.log(width / mouse[0]);
-                        let xDate = x.invert(mouse[0]);
-                        let bisect = d3.bisector(d => d.date).right;
-                        let idx = bisect(d.values, xDate);
 
                         let beginning = 0;
                         let end = lines[i].getTotalLength();

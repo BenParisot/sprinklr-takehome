@@ -111,29 +111,6 @@ export const DisplayGraph = styled.div`
     margin: 4rem 0 0 5rem;
 `;
 
-// export const DataDetail = styled.div`
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     margin: 4rem 0 0 0;
-//     h2 {
-//         text-transform: uppercase;
-//         font-family: 'Sarala', sans-serif;
-//         font-weight: bold;
-//         color: #282828;
-//         font-size: 2rem;
-//     }
-// `;
-
-// export const DataModals = styled.div`
-//     display: flex;
-//     margin: 1rem 6rem;
-//     padding: 1.5rem;
-//     h2 {
-//         margin-bottom: 1rem;
-//     }
-// `;
-
 export const DataInfo = styled.div`
     display: flex;
     justify-content: center;
