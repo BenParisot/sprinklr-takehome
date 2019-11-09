@@ -82,7 +82,23 @@ export const DisplayHeader = styled.div`
     display: flex;
     flex-grow: 1 2;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+`;
+
+export const CurrentTemp = styled.div`
+    border-left: 4px solid red;
+    padding-left: 3rem;
+    margin: 0 5rem 0 0;
+    p {
+        text-transform: uppercase;
+        font-family: sans-serif;
+    }
+    h1 {
+        text-transform: uppercase;
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
+        font-size: 3rem;
+    }
 `;
 
 export const DisplayTitle = styled.div`

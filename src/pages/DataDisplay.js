@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, DisplayHeader, DataInfo, GraphDiv, Hr, Dolores } from '../styles';
+import { DisplayTitle, CurrentTemp, DisplayHeader, DataInfo, GraphDiv, Dolores } from '../styles';
 import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/fetchWeather';
 import { sortWeatherData } from '../utils/sortWeatherData';
@@ -16,6 +16,7 @@ export default class DataDisplay extends PureComponent {
         tempAvg: '',
         tempLow: '',
         tempHigh: '',
+        currentTemp: ''
     }
 
 
@@ -29,7 +30,8 @@ export default class DataDisplay extends PureComponent {
                 completedMount: true,
                 tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
                 tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp))
+                tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                currentTemp: sortWeatherData(results.weatherData)[0].temp
             }));
     }
 
@@ -43,10 +45,11 @@ export default class DataDisplay extends PureComponent {
 
     render() {
         const color = '#CB8589';
-        const { cityName, stateName, rainProp, data, tempAvg, tempHigh, tempLow } = this.state;
+        const { cityName, stateName, rainProp, data, tempAvg, tempHigh, tempLow, currentTemp } = this.state;
         console.log('temp av', tempAvg);
         console.log('temp hi', tempHigh);
         console.log('temp lo', tempLow);
+        console.log('current', currentTemp);
         return (
             <>
                 <Header />
@@ -54,19 +57,21 @@ export default class DataDisplay extends PureComponent {
                     <>
                         <DisplayHeader>
                             <DisplayTitle>
-                                <h2>12-HR Temps for</h2>
-                                <h1 className="location-title">{cityName}, {stateName}</h1>
+                                <h1>12-HR Temps for <span className="location-title">{cityName}, {stateName}</span></h1>
                             </DisplayTitle>
-                            <DataInfo>
-                                <WiRaindrops size="200" color={color} />
-                                <p>There is a {rainProp}% change it's gonna rain today.</p>
-                            </DataInfo>
+                            <CurrentTemp>
+                                <p>Current Temp:</p>
+                                <h1>{currentTemp}&deg;</h1>
+                            </CurrentTemp>
                         </DisplayHeader>
                         <GraphDiv>
                             <div id="svg">
                             </div>
                         </GraphDiv>
-                        <Hr />
+                        <DataInfo>
+                                <WiRaindrops size="200" color={color} />
+                                <p>There is a {rainProp}% change it's gonna rain today.</p>
+                            </DataInfo>
                     </> :
                     <Dolores>Your content is loading</Dolores>}
             </>
