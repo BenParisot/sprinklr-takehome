@@ -86,7 +86,7 @@ export const DisplayHeader = styled.div`
 `;
 
 export const CurrentTemp = styled.div`
-    border-left: 4px solid red;
+    border-left: 4px solid ${props => props.tempColor};
     padding-left: 3rem;
     margin: 0 5rem 0 0;
     p {
@@ -98,6 +98,7 @@ export const CurrentTemp = styled.div`
         font-family: 'Sarala', sans-serif;
         font-weight: bold;
         font-size: 3rem;
+        color: ${props => props.tempColor};
     }
 `;
 

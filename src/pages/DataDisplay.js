@@ -50,6 +50,12 @@ export default class DataDisplay extends PureComponent {
         console.log('temp hi', tempHigh);
         console.log('temp lo', tempLow);
         console.log('current', currentTemp);
+        const tempColor = () => {
+            if(currentTemp < 60) return '#6FB5E8';
+            else if (currentTemp > 60 && currentTemp < 80) return '#F78E69';
+            else return '#931F1D';
+        };
+
         return (
             <>
                 <Header />
@@ -59,7 +65,7 @@ export default class DataDisplay extends PureComponent {
                             <DisplayTitle>
                                 <h1>12-HR Temps for <span className="location-title">{cityName}, {stateName}</span></h1>
                             </DisplayTitle>
-                            <CurrentTemp>
+                            <CurrentTemp tempColor={tempColor}>
                                 <p>Current Temp:</p>
                                 <h1>{currentTemp}&deg;</h1>
                             </CurrentTemp>
