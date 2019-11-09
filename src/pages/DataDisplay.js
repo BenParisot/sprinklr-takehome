@@ -4,7 +4,9 @@ import { DisplayTitle, CurrentTemp, DisplayHeader, DataInfo, GraphDiv, Dolores }
 import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/fetchWeather';
 import { sortWeatherData } from '../utils/sortWeatherData';
+import { setColorFromCurrentTemp } from '../utils/setColorFromCurrentTemp';
 import makeLineGraph from '../utils/makeLineGraph';
+
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
@@ -50,11 +52,7 @@ export default class DataDisplay extends PureComponent {
         console.log('temp hi', tempHigh);
         console.log('temp lo', tempLow);
         console.log('current', currentTemp);
-        const tempColor = () => {
-            if(currentTemp < 60) return '#6FB5E8';
-            else if (currentTemp > 60 && currentTemp < 80) return '#F78E69';
-            else return '#931F1D';
-        };
+        const tempColor = () => setColorFromCurrentTemp(currentTemp);
 
         return (
             <>
