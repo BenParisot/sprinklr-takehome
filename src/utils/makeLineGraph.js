@@ -23,7 +23,7 @@ export default function makeLineGraph(data) {
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     x.domain(d3.extent(data, d => d.date));
-    y.domain([0, d3.max(data, d => d.temp)]);
+    y.domain([0, (d3.max(data, d => d.temp) + 20)]);
 
     svg.append('path')
         .data([data])
