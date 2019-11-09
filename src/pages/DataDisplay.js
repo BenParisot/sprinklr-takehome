@@ -25,7 +25,6 @@ export default class DataDisplay extends PureComponent {
         lowColor: ''
     }
 
-
     getWeather = (zip) => {
         return fetchWeather(zip)
             .then(results => this.setState({
