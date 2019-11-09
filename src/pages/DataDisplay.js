@@ -12,7 +12,10 @@ export default class DataDisplay extends PureComponent {
         cityName: '',
         stateName: '',
         rainProp: '',
-        completedMount: false
+        completedMount: false,
+        tempAvg: '',
+        tempLow: '',
+        tempHigh: '',
     }
 
     getWeather = (zip) => {
@@ -22,7 +25,8 @@ export default class DataDisplay extends PureComponent {
                 cityName: results.cityData[0].EnglishName,
                 stateName: results.cityData[0].AdministrativeArea.ID,
                 rainProp: results.weatherData[0].PrecipitationProbability,
-                completedMount: true
+                completedMount: true,
+                tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12))
             }));
     }
 
@@ -33,12 +37,16 @@ export default class DataDisplay extends PureComponent {
     componentDidUpdate() {
         const data = this.state.data;
         makeLineGraph(data);
+        // const tempValArray = data.map(d => d.temp);
+        // const tempAvg = Math.floor(((data.map(d => d.temp)).reduce((a, b) => a + b, 0) / 12));
+        // console.log('data', tempValArray);
+        // console.log('temp avg', tempAvg);
     }
 
     render() {
         const color = '#CB8589';
-        const { cityName, stateName, rainProp, data } = this.state;
-
+        const { cityName, stateName, rainProp, data, tempAvg } = this.state;
+        console.log('temp av', tempAvg);
         return (
             <>
                 <Header />
