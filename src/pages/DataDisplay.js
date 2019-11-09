@@ -49,7 +49,7 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidUpdate() {
-        makeLineGraph(this.state.data);
+        makeLineGraph(this.state.data, this.state.tempColor);
     }
 
     render() {

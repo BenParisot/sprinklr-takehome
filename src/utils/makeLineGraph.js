@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 
-export default function makeLineGraph(data) {
+export default function makeLineGraph(data, tempColor) {
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
     const height = 440;
     const width = 1100;
@@ -29,7 +29,7 @@ export default function makeLineGraph(data) {
         .data([data])
         .attr('class', 'line')
         .attr('fill', 'none')
-        .attr('stroke', 'black')
+        .attr('stroke', 'grey')
         .attr('stroke-width', 0)
         .attr('d', graphLine)
         .transition()
@@ -39,7 +39,7 @@ export default function makeLineGraph(data) {
         .transition()
         .duration('2500')
         .attr('stroke-width', 4)
-        .attr('stroke', '#018bb1');
+        .attr('stroke', tempColor);
 
     svg.append('g')
         .attr('transform', `translate(0, ${height})`)
