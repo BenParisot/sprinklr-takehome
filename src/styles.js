@@ -132,8 +132,8 @@ export const DataInfo = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2.5rem;
-    padding-right: 3rem;
+    margin: 5.5rem;
+    padding: 3rem;
     background: rgba(1, 139, 177, .2);
     text-align: center;
     p {
@@ -141,6 +141,7 @@ export const DataInfo = styled.div`
         font-weight: bold;
         color: #282828;
         font-size: 1.4rem;
+        margin-left: 1.4rem;
     }
 `;
 
