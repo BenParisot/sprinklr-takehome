@@ -18,6 +18,7 @@ export default class DataDisplay extends PureComponent {
         tempHigh: '',
     }
 
+
     getWeather = (zip) => {
         return fetchWeather(zip)
             .then(results => this.setState({
@@ -26,7 +27,9 @@ export default class DataDisplay extends PureComponent {
                 stateName: results.cityData[0].AdministrativeArea.ID,
                 rainProp: results.weatherData[0].PrecipitationProbability,
                 completedMount: true,
-                tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12))
+                tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
+                tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp))
             }));
     }
 
@@ -35,18 +38,15 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidUpdate() {
-        const data = this.state.data;
-        makeLineGraph(data);
-        // const tempValArray = data.map(d => d.temp);
-        // const tempAvg = Math.floor(((data.map(d => d.temp)).reduce((a, b) => a + b, 0) / 12));
-        // console.log('data', tempValArray);
-        // console.log('temp avg', tempAvg);
+        makeLineGraph(this.state.data);
     }
 
     render() {
         const color = '#CB8589';
-        const { cityName, stateName, rainProp, data, tempAvg } = this.state;
+        const { cityName, stateName, rainProp, data, tempAvg, tempHigh, tempLow } = this.state;
         console.log('temp av', tempAvg);
+        console.log('temp hi', tempHigh);
+        console.log('temp lo', tempLow);
         return (
             <>
                 <Header />
