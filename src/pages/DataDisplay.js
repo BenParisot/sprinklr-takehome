@@ -142,10 +142,10 @@ export default class DataDisplay extends PureComponent {
 
                 d3.selectAll('.mouse-per-line')
                     .attr('transform', function (d, i) {
-                        console.log(width / mouse[0])
-                        const xDate = x.invert(mouse[0]),
-                        bisect = d3.bisector(d => d.date).right,
-                        idx = bisect(d.values, xDate);
+                        console.log(width / mouse[0]);
+                        let xDate = x.invert(mouse[0]);
+                        let bisect = d3.bisector(d => d.date).right;
+                        let idx = bisect(d.values, xDate);
 
                         let beginning = 0;
                         let end = lines[i].getTotalLength();
@@ -165,8 +165,8 @@ export default class DataDisplay extends PureComponent {
 
                         d3.select(this).select('text')
                             .text(y.invert(pos.y).toFixed(2));
-                        return `translate ${mouse[0]}, ${pos.y}`;
-                    })
+                        return "translate(" + mouse[0] + "," + pos.y +")";
+                    });
             });
 
     }
