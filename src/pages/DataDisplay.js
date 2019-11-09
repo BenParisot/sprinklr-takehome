@@ -4,13 +4,13 @@ import { DisplayTitle, DisplayHeader, DataInfo, GraphDiv, Hr, Dolores } from '..
 import { WiRaindrops } from 'react-icons/wi';
 import { fetchWeather } from '../utils/FetchWeather';
 import { sortWeatherData } from '../utils/SortWeatherData';
+import { dummyData } from '../assets/dummy-data';
 import * as d3 from 'd3';
-// import { dummyData } from '../assets/dummy-data';
 export default class DataDisplay extends PureComponent {
     state = {
         zip: this.props.match.params.zip,
-        data: null,
-        cityName: null,
+        data: dummyData,
+        cityName: 'Portland',
         stateName: '',
         rainProp: '',
         completedMount: false
@@ -28,10 +28,10 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidMount() {
-        this.getWeather(this.state.zip);
-        // this.setState({
-        //     completedMount: true
-        // })
+        // this.getWeather(this.state.zip);
+        this.setState({
+            completedMount: true
+        })
     }
 
     componentDidUpdate() {
@@ -135,7 +135,7 @@ export default class DataDisplay extends PureComponent {
                 const mouse = d3.mouse(this);
                 d3.select('.mouse-line')
                     .attr('d', function () {
-                        let d = `M ${mouse[0]}, height`;
+                        let d = `M${mouse[0]}, ${height}`;
                         d += ` ${mouse[0]}, 0`
                         return d;
                     });
