@@ -1,82 +1,20 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Weather.
+## A dynamic and interactive line graph made with D3 and the AccuWeather API
 
-## Available Scripts
+Weather. is an app that takes a user-entered zip United States zip code and draws an interactive 12-hour temperature forecast line graph using the D3 visualization library. It also provides information about the current temperature, the 12-hour high temperature, the 12-hour low temperature, and the 12-hour likelihood of rain.
 
-In the project directory, you can run:
+### How to Use the App:
+1. Enter a valid U.S. zip code into the input box on the homepage.
+2. Hit return or click the "Submit" button.
+3. Once your graph is drawn, move your mouse over the graph area to get the specific temperature for that time.
+4. Scroll down the page to learn more weather details for the next 12 hours.
 
-### `yarn start`
+### Install Steps:
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. Clone this repository from https://github.com/BenParisot/sprinklr-takehome.git
+2. Run `npm install` to install all app dependencies.
+3. Run `npm start` to run app locally in development mode.
+4. Open http://localhost:3000 to view the app.
 
 
-            // { date: new Date("2019-11-06T19:00:00-08:00"), temp: 53 },
-            // { date: new Date("2019-11-06T20:00:00-08:00"), temp: 51 },
-            // { date: new Date("2019-11-06T21:00:00-08:00"), temp: 50 },
-            // { date: new Date("2019-11-06T22:00:00-08:00"), temp: 49 },
-            // { date: new Date("2019-11-06T23:00:00-08:00"), temp: 48 },
-            // { date: new Date("2019-11-07T00:00:00-08:00"), temp: 47 },
-            // { date: new Date("2019-11-07T01:00:00-08:00"), temp: 46 },
-            // { date: new Date("2019-11-07T02:00:00-08:00"), temp: 45 },
-            // { date: new Date("2019-11-07T03:00:00-08:00"), temp: 44 },
-            // { date: new Date("2019-11-07T03:00:00-08:00"), temp: 44 },
-            // { date: new Date("2019-11-07T05:00:00-08:00"), temp: 43 },
-            // { date: new Date("2019-11-07T06:00:00-08:00"), temp: 41 },
+    *Note: Only valid U.S. zip codes are allowed. Entering an invalid zip code will cause an error in fetching the weather data and the page will not be displayed.*
