@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/sprinklr-takehome/public/static/css/main.d9bba2d3.chunk.css",
-    "main.js": "/sprinklr-takehome/public/static/js/main.7cdb0e40.chunk.js",
-    "main.js.map": "/sprinklr-takehome/public/static/js/main.7cdb0e40.chunk.js.map",
-    "runtime-main.js": "/sprinklr-takehome/public/static/js/runtime-main.26ba94af.js",
-    "runtime-main.js.map": "/sprinklr-takehome/public/static/js/runtime-main.26ba94af.js.map",
-    "static/js/2.0f571c72.chunk.js": "/sprinklr-takehome/public/static/js/2.0f571c72.chunk.js",
-    "static/js/2.0f571c72.chunk.js.map": "/sprinklr-takehome/public/static/js/2.0f571c72.chunk.js.map",
-    "index.html": "/sprinklr-takehome/public/index.html",
-    "precache-manifest.1468239348ce0a016a0d7bd34e88b194.js": "/sprinklr-takehome/public/precache-manifest.1468239348ce0a016a0d7bd34e88b194.js",
-    "service-worker.js": "/sprinklr-takehome/public/service-worker.js",
-    "static/css/main.d9bba2d3.chunk.css.map": "/sprinklr-takehome/public/static/css/main.d9bba2d3.chunk.css.map",
-    "static/media/background.jpg": "/sprinklr-takehome/public/static/media/background.c5a1e20a.jpg",
-    "static/media/header-background.jpg": "/sprinklr-takehome/public/static/media/header-background.d411451b.jpg"
+    "main.css": "/sprinklr-takehome/static/css/main.d9bba2d3.chunk.css",
+    "main.js": "/sprinklr-takehome/static/js/main.1c89671c.chunk.js",
+    "main.js.map": "/sprinklr-takehome/static/js/main.1c89671c.chunk.js.map",
+    "runtime-main.js": "/sprinklr-takehome/static/js/runtime-main.4cd97c1e.js",
+    "runtime-main.js.map": "/sprinklr-takehome/static/js/runtime-main.4cd97c1e.js.map",
+    "static/js/2.35328a52.chunk.js": "/sprinklr-takehome/static/js/2.35328a52.chunk.js",
+    "static/js/2.35328a52.chunk.js.map": "/sprinklr-takehome/static/js/2.35328a52.chunk.js.map",
+    "index.html": "/sprinklr-takehome/index.html",
+    "precache-manifest.3374a254a845d231b88fc1ede2436163.js": "/sprinklr-takehome/precache-manifest.3374a254a845d231b88fc1ede2436163.js",
+    "service-worker.js": "/sprinklr-takehome/service-worker.js",
+    "static/css/main.d9bba2d3.chunk.css.map": "/sprinklr-takehome/static/css/main.d9bba2d3.chunk.css.map",
+    "static/media/background.jpg": "/sprinklr-takehome/static/media/background.c5a1e20a.jpg",
+    "static/media/header-background.jpg": "/sprinklr-takehome/static/media/header-background.d411451b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.26ba94af.js",
-    "static/js/2.0f571c72.chunk.js",
+    "static/js/runtime-main.4cd97c1e.js",
+    "static/js/2.35328a52.chunk.js",
     "static/css/main.d9bba2d3.chunk.css",
-    "static/js/main.7cdb0e40.chunk.js"
+    "static/js/main.1c89671c.chunk.js"
   ]
 }
