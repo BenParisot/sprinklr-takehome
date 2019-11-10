@@ -1,7 +1,7 @@
 # Weather.
 ## A dynamic and interactive line graph made with D3 and the AccuWeather API
 
-Weather. is an app that takes a user-entered zip United States zip code and draws an interactive 12-hour temperature forecast line graph using the D3 visualization library. It also provides information about the current temperature, the 12-hour high temperature, the 12-hour low temperature, and the 12-hour likelihood of rain.
+Weather. is an app that takes a user-entered United States zip code and draws an interactive 12-hour temperature forecast line graph using the D3 visualization library. It also provides information about the current temperature, the 12-hour high temperature, the 12-hour low temperature, and the 12-hour likelihood of rain.
 
 ### How to Use the App:
 1. Enter a valid U.S. zip code into the input box on the homepage.
