@@ -3,7 +3,7 @@ import Header from '../components/global/Header';
 import { DisplayTitle, CurrentTemp, DisplayHeader, DataInfo, GraphDiv, Dolores } from '../styles';
 import { FiCloudDrizzle } from 'react-icons/fi';
 import { FaArrowCircleUp, FaArrowCircleDown } from 'react-icons/fa';
-import { fetchWeather } from '../utils/fetchWeather';
+import { fetchWeather } from 'src/utils/fetchWeather.js';
 import { sortWeatherData } from '../utils/sortWeatherData';
 import { setColorFromCurrentTemp } from '../utils/setColorFromCurrentTemp';
 import makeLineGraph from '../utils/makeLineGraph';
