@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sprinklr-takehome/public/precache-manifest.828021025417178d572ca8b5497eb1bb.js"
+  "/sprinklr-takehome/public/precache-manifest.3dc6c07d4b70f74c09315bfd2e897f7b.js"
 );
 
 self.addEventListener('message', (event) => {
