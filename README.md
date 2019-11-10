@@ -12,6 +12,7 @@ Weather. is an app that takes a user-entered zip United States zip code and draw
 ### Install Steps:
 
 1. Clone this repository from https://github.com/BenParisot/sprinklr-takehome.git
+2. Run `cd sprinklr-takehome` to move into the app folder.
 2. Run `npm install` to install all app dependencies.
 3. Run `npm start` to run app locally in development mode.
 4. Open http://localhost:3000 to view the app.
