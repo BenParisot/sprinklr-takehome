@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "589f5fb1ed46011071d7780fdb6424fa",
+    "revision": "99df4054429cf3ff640e19ca4ad51e6b",
     "url": "/sprinklr-takehome/public/index.html"
   },
   {
