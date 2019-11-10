@@ -1,6 +1,5 @@
 {
   "name": "sprinklr-takehome",
-  "homepage": "http://benparisot.github.io/sprinklr-takehome/public/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,7 +12,6 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1",
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
@@ -44,7 +42,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && gh-pages -d build",
     "test": "jest",
     "eject": "react-scripts eject"
   },
