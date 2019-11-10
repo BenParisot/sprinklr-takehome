@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/sprinklr-takehome/index.html/static/css/main.d9bba2d3.chunk.css",
-    "main.js": "/sprinklr-takehome/index.html/static/js/main.25e4a519.chunk.js",
-    "main.js.map": "/sprinklr-takehome/index.html/static/js/main.25e4a519.chunk.js.map",
-    "runtime-main.js": "/sprinklr-takehome/index.html/static/js/runtime-main.d2ca8dc9.js",
-    "runtime-main.js.map": "/sprinklr-takehome/index.html/static/js/runtime-main.d2ca8dc9.js.map",
-    "static/js/2.5de2740b.chunk.js": "/sprinklr-takehome/index.html/static/js/2.5de2740b.chunk.js",
-    "static/js/2.5de2740b.chunk.js.map": "/sprinklr-takehome/index.html/static/js/2.5de2740b.chunk.js.map",
-    "index.html": "/sprinklr-takehome/index.html/index.html",
-    "precache-manifest.34e815993a20fc5527795f3ae6bb4ce9.js": "/sprinklr-takehome/index.html/precache-manifest.34e815993a20fc5527795f3ae6bb4ce9.js",
-    "service-worker.js": "/sprinklr-takehome/index.html/service-worker.js",
-    "static/css/main.d9bba2d3.chunk.css.map": "/sprinklr-takehome/index.html/static/css/main.d9bba2d3.chunk.css.map",
-    "static/media/background.jpg": "/sprinklr-takehome/index.html/static/media/background.c5a1e20a.jpg",
-    "static/media/header-background.jpg": "/sprinklr-takehome/index.html/static/media/header-background.d411451b.jpg"
+    "main.css": "/sprinklr-takehome/public/static/css/main.d9bba2d3.chunk.css",
+    "main.js": "/sprinklr-takehome/public/static/js/main.b038554f.chunk.js",
+    "main.js.map": "/sprinklr-takehome/public/static/js/main.b038554f.chunk.js.map",
+    "runtime-main.js": "/sprinklr-takehome/public/static/js/runtime-main.f8e65bd3.js",
+    "runtime-main.js.map": "/sprinklr-takehome/public/static/js/runtime-main.f8e65bd3.js.map",
+    "static/js/2.8a52c77f.chunk.js": "/sprinklr-takehome/public/static/js/2.8a52c77f.chunk.js",
+    "static/js/2.8a52c77f.chunk.js.map": "/sprinklr-takehome/public/static/js/2.8a52c77f.chunk.js.map",
+    "index.html": "/sprinklr-takehome/public/index.html",
+    "precache-manifest.12ec80119c5792731091e14b37d1547c.js": "/sprinklr-takehome/public/precache-manifest.12ec80119c5792731091e14b37d1547c.js",
+    "service-worker.js": "/sprinklr-takehome/public/service-worker.js",
+    "static/css/main.d9bba2d3.chunk.css.map": "/sprinklr-takehome/public/static/css/main.d9bba2d3.chunk.css.map",
+    "static/media/background.jpg": "/sprinklr-takehome/public/static/media/background.c5a1e20a.jpg",
+    "static/media/header-background.jpg": "/sprinklr-takehome/public/static/media/header-background.d411451b.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.d2ca8dc9.js",
-    "static/js/2.5de2740b.chunk.js",
+    "static/js/runtime-main.f8e65bd3.js",
+    "static/js/2.8a52c77f.chunk.js",
     "static/css/main.d9bba2d3.chunk.css",
-    "static/js/main.25e4a519.chunk.js"
+    "static/js/main.b038554f.chunk.js"
   ]
 }
