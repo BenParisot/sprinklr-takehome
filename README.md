@@ -9,6 +9,8 @@ Weather. is an app that takes a user-entered zip United States zip code and draw
 3. Once your graph is drawn, move your mouse over the graph area to get the specific temperature for that time.
 4. Scroll down the page to learn more weather details for the next 12 hours.
 
+    *IMPORTANT: Only valid U.S. zip codes are allowed. Entering an invalid zip code will cause an error in fetching the weather data and the page will not be displayed.*
+
 ### Install Steps:
 
 1. Clone this repository from https://github.com/BenParisot/sprinklr-takehome.git
@@ -16,6 +18,3 @@ Weather. is an app that takes a user-entered zip United States zip code and draw
 2. Run `npm install` to install all app dependencies.
 3. Run `npm start` to run app locally in development mode.
 4. Open http://localhost:3000 to view the app.
-
-
-    *Note: Only valid U.S. zip codes are allowed. Entering an invalid zip code will cause an error in fetching the weather data and the page will not be displayed.*
