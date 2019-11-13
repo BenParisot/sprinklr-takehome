@@ -6,10 +6,12 @@ export default function makeLineGraph(data, tempColor) {
     const width = 1100;
 
     const x = d3.scaleTime()
-        .range([0, width]);
+        .range([0, width])
+        .domain(d3.extent(data, d => d.date));
 
     const y = d3.scaleLinear()
-        .range([height, 0]);
+        .range([height, 0])
+        .domain([0, (d3.max(data, d => d.temp) + 20)]);
 
     const graphLine = d3.line()
         .x(d => x(d.date))
@@ -21,9 +23,6 @@ export default function makeLineGraph(data, tempColor) {
         .attr('height', height + margin.top + margin.bottom)
         .append('g')
         .attr('transform', `translate(${margin.left}, ${margin.top})`);
-
-    x.domain(d3.extent(data, d => d.date));
-    y.domain([0, (d3.max(data, d => d.temp) + 20)]);
 
     svg.append('path')
         .data([data])

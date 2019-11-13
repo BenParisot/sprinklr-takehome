@@ -1,6 +1,5 @@
 import { sortWeatherData } from './sortWeatherData';
 
-
 describe('Testing sorting of weather data', () => {
     it('returns a truncated array of weather data', () => {
         const mockWeatherObj = [
