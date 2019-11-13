@@ -10,8 +10,5 @@ export const fetchWeather = async (zip) => {
             weatherData: weatherData
         }
         return weatherObject;
-
     }
-
-    
 }
