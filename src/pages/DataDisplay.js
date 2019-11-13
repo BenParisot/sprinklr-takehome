@@ -22,25 +22,31 @@ export default class DataDisplay extends PureComponent {
         currentTemp: '',
         tempColor: '',
         highColor: '',
-        lowColor: ''
+        lowColor: '',
+        zipError: false
     }
 
     getWeather = (zip) => {
         return fetchWeather(zip)
-            .then(results => this.setState({
-                data: sortWeatherData(results.weatherData),
-                cityName: results.cityData[0].EnglishName,
-                stateName: results.cityData[0].AdministrativeArea.ID,
-                rainProp: results.weatherData[0].PrecipitationProbability,
-                completedMount: true,
-                tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
-                tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                currentTemp: sortWeatherData(results.weatherData)[0].temp,
-                tempColor: setColorFromCurrentTemp(sortWeatherData(results.weatherData)[0].temp),
-                highColor: setColorFromCurrentTemp(Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp))),
-                lowColor: setColorFromCurrentTemp(Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)))
-            }));
+            .then(results => {
+                if (!results) this.setState({ zipError: true });
+                else {
+                this.setState({
+                    data: sortWeatherData(results.weatherData),
+                    cityName: results.cityData[0].EnglishName,
+                    stateName: results.cityData[0].AdministrativeArea.ID,
+                    rainProp: results.weatherData[0].PrecipitationProbability,
+                    completedMount: true,
+                    tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
+                    tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                    tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                    currentTemp: sortWeatherData(results.weatherData)[0].temp,
+                    tempColor: setColorFromCurrentTemp(sortWeatherData(results.weatherData)[0].temp),
+                    highColor: setColorFromCurrentTemp(Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp))),
+                    lowColor: setColorFromCurrentTemp(Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)))
+                });
+            }
+            });
     }
 
     componentDidMount() {
@@ -48,15 +54,21 @@ export default class DataDisplay extends PureComponent {
     }
 
     componentDidUpdate() {
-        makeLineGraph(this.state.data, this.state.tempColor);
+        if (this.state.zipError === false) makeLineGraph(this.state.data, this.state.tempColor);
     }
 
     render() {
-        const { cityName, stateName, rainProp, data, tempHigh, tempLow, currentTemp, tempColor, highColor, lowColor } = this.state;
+        const { cityName, stateName, rainProp, data, tempHigh, tempLow, currentTemp, tempColor, highColor, lowColor, zipError } = this.state;
+
+        if (zipError) return ( 
+            <>
+                <Header />
+                <Dolores>That is not a valid zip code.</Dolores>
+            </>)
 
         return (
             <>
-                <Header />
+                <Header />                
                 {data ?
                     <>
                         <DisplayHeader>
@@ -86,6 +98,8 @@ export default class DataDisplay extends PureComponent {
                         </DataInfo>
                     </> :
                     <Dolores>Your content is loading</Dolores>}
+                }
+
             </>
         )
     }
