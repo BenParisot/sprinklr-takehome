@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import Header from '../components/global/Header';
-import { DisplayTitle, CurrentTemp, DisplayHeader, DataInfo, GraphDiv, Dolores } from '../styles';
+import { DisplayTitle, CurrentTemp, DisplayHeader, DataInfo, GraphDiv, Dolores, Button } from '../styles';
 import { FiCloudDrizzle } from 'react-icons/fi';
 import { FaArrowCircleUp, FaArrowCircleDown } from 'react-icons/fa';
 import { fetchWeather } from '../utils/fetchWeather.js';
 import { sortWeatherData } from '../utils/sortWeatherData';
 import { setColorFromCurrentTemp } from '../utils/setColorFromCurrentTemp';
 import makeLineGraph from '../utils/makeLineGraph';
+import { Link } from 'react-router-dom';
+
 
 export default class DataDisplay extends PureComponent {
     state = {
@@ -31,21 +33,21 @@ export default class DataDisplay extends PureComponent {
             .then(results => {
                 if (!results) this.setState({ zipError: true });
                 else {
-                this.setState({
-                    data: sortWeatherData(results.weatherData),
-                    cityName: results.cityData[0].EnglishName,
-                    stateName: results.cityData[0].AdministrativeArea.ID,
-                    rainProp: results.weatherData[0].PrecipitationProbability,
-                    completedMount: true,
-                    tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
-                    tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                    tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
-                    currentTemp: sortWeatherData(results.weatherData)[0].temp,
-                    tempColor: setColorFromCurrentTemp(sortWeatherData(results.weatherData)[0].temp),
-                    highColor: setColorFromCurrentTemp(Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp))),
-                    lowColor: setColorFromCurrentTemp(Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)))
-                });
-            }
+                    this.setState({
+                        data: sortWeatherData(results.weatherData),
+                        cityName: results.cityData[0].EnglishName,
+                        stateName: results.cityData[0].AdministrativeArea.ID,
+                        rainProp: results.weatherData[0].PrecipitationProbability,
+                        completedMount: true,
+                        tempAvg: Math.floor((((sortWeatherData(results.weatherData)).map(d => d.temp)).reduce((a, b) => a + b, 0) / 12)),
+                        tempHigh: Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                        tempLow: Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)),
+                        currentTemp: sortWeatherData(results.weatherData)[0].temp,
+                        tempColor: setColorFromCurrentTemp(sortWeatherData(results.weatherData)[0].temp),
+                        highColor: setColorFromCurrentTemp(Math.max(...(sortWeatherData(results.weatherData)).map(d => d.temp))),
+                        lowColor: setColorFromCurrentTemp(Math.min(...(sortWeatherData(results.weatherData)).map(d => d.temp)))
+                    });
+                }
             });
     }
 
@@ -63,7 +65,10 @@ export default class DataDisplay extends PureComponent {
         if (zipError) return ( 
             <>
                 <Header />
-                <Dolores>That is not a valid zip code.</Dolores>
+                <Dolores>
+                    <h1>Sorry, that is not a valid zip code.</h1>
+                    <Link to='/'><Button>Try Again</Button></Link>
+                </Dolores>
             </>)
 
         return (
@@ -97,7 +102,7 @@ export default class DataDisplay extends PureComponent {
                             <p>The low over the next 12 hours will be {tempLow}&deg;</p>
                         </DataInfo>
                     </> :
-                    <Dolores>Your content is loading</Dolores>}
+                    <Dolores><h1>Your content is loading...</h1></Dolores>}
                 }
 
             </>

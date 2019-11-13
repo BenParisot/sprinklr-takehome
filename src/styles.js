@@ -152,17 +152,41 @@ export const GraphDiv = styled.div`
     margin-right: 2.5rem;
 `;
 
-export const Dolores = styled.h1`
-    font-size: 3rem;
-    color: #018bb1;
-    text-transform: uppercase;
-    font-family: 'Sarala', sans-serif;
-    font-weight: bold;
-    text-align: center;
-    margin-top: 6rem;
+export const Dolores = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1 {
+        font-size: 3rem;
+        color: #018bb1;
+        text-transform: uppercase;
+        font-family: 'Sarala', sans-serif;
+        font-weight: bold;
+        text-align: center;
+        margin: 6rem 0 3rem 0;
+    }
 `;
 
 export const Hr = styled.hr`
     border: .2rem solid #CB8589;
     margin: 4rem 6rem;
+`;
+
+export const Button = styled.button`
+    border: none;
+    padding: 1rem 2rem;
+    color: white;
+    background: coral;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-family: 'Sarala', sans-serif;
+    font-weight: bold;
+    
+    :hover {
+        cursor: pointer;
+    }
+
+    :visited {
+        text-decoration: none;
+    }
 `;
