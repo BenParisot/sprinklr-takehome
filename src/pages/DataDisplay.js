@@ -25,13 +25,15 @@ export default class DataDisplay extends PureComponent {
         tempColor: '',
         highColor: '',
         lowColor: '',
-        zipError: false
+        zipError: false,
+        rateLimit: false
     }
 
     getWeather = (zip) => {
         return fetchWeather(zip)
             .then(results => {
                 if (!results) this.setState({ zipError: true });
+                if (results === 400 || results === 401 || results === 403) this.setState({ rateLimit: true });
                 else {
                     this.setState({
                         data: sortWeatherData(results.weatherData),
@@ -60,9 +62,18 @@ export default class DataDisplay extends PureComponent {
     }
 
     render() {
-        const { cityName, stateName, rainProp, data, tempHigh, tempLow, currentTemp, tempColor, highColor, lowColor, zipError } = this.state;
+        const { cityName, stateName, rainProp, data, tempHigh, tempLow, currentTemp, tempColor, highColor, lowColor, zipError, rateLimit } = this.state;
 
-        if (zipError) return ( 
+        if (rateLimit) return (
+            <>
+                <Header />
+                <Dolores>
+                    <h1>Sorry, but this API has exceeded it's daily call limit. Try again tomorrow.</h1>
+                </Dolores>
+            </>
+        )
+
+        if (zipError) return (
             <>
                 <Header />
                 <Dolores>
@@ -73,7 +84,7 @@ export default class DataDisplay extends PureComponent {
 
         return (
             <>
-                <Header />                
+                <Header />
                 {data ?
                     <>
                         <DisplayHeader>
