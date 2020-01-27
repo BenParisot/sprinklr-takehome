@@ -1,5 +1,5 @@
 export const fetchWeather = async (zip) => {
-    let keyResponse = await fetch(`https://dataservice.accuweather.com/locations/v1/postalcodes/US/search?apikey=lQQRp0lpAFwmdth6WndYEFAZI8Z2EcVl=${zip}`);
+    let keyResponse = await fetch(`https://dataservice.accuweather.com/locations/v1/postalcodes/US/search?apikey=lQQRp0lpAFwmdth6WndYEFAZI8Z2EcVl&q=${zip}`);
     console.log('key response', typeof(keyResponse.status));
     if (keyResponse.status !== 200) return keyResponse.status;
     else {
